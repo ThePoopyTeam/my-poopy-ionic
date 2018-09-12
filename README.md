@@ -128,6 +128,9 @@ Digite os seguintes comando para clonar o projeto:
 Após fazer todos os passos anteriores, você já está pronto para rodar o projeto **My Poopy**.
 
 #### Rodando no Browser:
+
+**Todos os comando abaixo levam em consideração que o seu terminal está aberto dentro da pasta do projeto.**
+
 ```
 Para rodar o projeto no seu navegador, basta digitar o seguinta comando no terminal:
 ```
