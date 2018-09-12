@@ -168,4 +168,5 @@ comando:
 Aqui acontece o mesmo processo de quando roda direto no dispositivo.
 ```
 
-**Parabén! Você está rodando o projeto MyPoopy na sua máquina.**
+**Parabéns! Você está rodando o projeto MyPoopy na sua máquina.**
+\\{o_o}/
