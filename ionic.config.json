@@ -1,0 +1,7 @@
+{
+  "name": "my-poopy",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
