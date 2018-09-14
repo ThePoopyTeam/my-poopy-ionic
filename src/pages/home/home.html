@@ -9,7 +9,14 @@
 <ion-content padding>
   <h1>My Poopy</h1>
   <h3>\\(*_*)/</h3>
-  <p>
-    Se você está lendo esta mensagem é porquê está funcionando lindamente! Parabéns!
-  </p>
+  <br><br>
+  <div *ngIf="user">
+    <p>User ID: {{ user.user_id }}</p>
+    <p>Nome: {{ user.name }}</p>
+    <p>Seu email é: {{ user.email }}</p>
+    <img [src]="user.image" alt="Imagem do Usuário">
+  </div>
+
+  <br><br>
+  <button ion-button color="danger" block (click)="loginGoogle()">Login com Google</button>
 </ion-content>
