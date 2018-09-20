@@ -34,7 +34,9 @@ export class LoginPage {
     this.facebook.login(['email']).then(res => {
       const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
       firebase.auth().signInWithCredential(fc).then(fs => {
-        alert("firebase sec")
+        alert("firebase sec");
+        alert(JSON.stringify(fs));
+        this.navCtrl.push(MapsPage);
       }).catch(ferr => {
         alert("firebase errc")
       })
