@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage} from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
+import { google } from 'google-maps';
 
 /**
  * Generated class for the MapsPage page.
@@ -8,6 +10,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
+ declare var google: any
+
 @IonicPage()
 @Component({
   selector: 'page-maps',
@@ -15,11 +19,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MapsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  map: any;
+  markers: any;
+
+  constructor(private geolocation: Geolocation) {
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MapsPage');
+    this.initMap()
   }
+
+  initMap() {
+    //pegando a posição inical da pessoa
+    this.geolocation.getCurrentPosition().then(result => {
+      this.loadMap(result.coords.latitude, result.coords.longitude);
+    })
+  }
+
+  //carregar o map com as coordendas do usuario
+  loadMap(lat, lng) {
+
+    var posicaoInicial = { lat, lng };
+
+    // criando o map e passando a configuração de como o mapa vai aparecer
+    this.map = new google.maps.Map(
+      document.getElementById('map'), {
+        zoom: 15,
+        center: posicaoInicial,
+        disableDefaultUI: true
+      }
+    );
+
+    this.markers = new google.maps.Marker({
+      icon: '#1F8AFF',
+      position: posicaoInicial
+    });
+
+    //adicionando o marcador ao mapa
+    this.markers.setMap(this.map);
+
+  }
+
 
 }
