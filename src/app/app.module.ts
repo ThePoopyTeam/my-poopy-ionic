@@ -6,11 +6,23 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+import { Facebook } from '@ionic-native/facebook';
+import firebase from 'firebase';
 
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
 
+export const firebaseConfig = {
+  apiKey: "AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ",
+  authDomain: "mypoopyproject-198f6.firebaseapp.com",
+  databaseURL: "https://mypoopyproject-198f6.firebaseio.com",
+  projectId: "mypoopyproject-198f6",
+  storageBucket: "mypoopyproject-198f6.appspot.com",
+  messagingSenderId: "192689498859"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -32,6 +44,7 @@ import { MapsPageModule } from '../pages/maps/maps.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidPermissions,
+    Facebook    
   ]
 })
 export class AppModule {}

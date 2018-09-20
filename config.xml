@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="br.com.mypoopyteam.mypoopyproject" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>my-poopy</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -46,6 +46,10 @@
             <uses-permission android:name="android.permission.INTERNET" />
             <uses-permission android:name="android.permission.READ_CONTACTS" />
         </config-file>
+        <config-file parent="/resources" target="./res/values/strings.xml">
+            <string name="fb_app_id">268407740454238</string>
+            <string name="fb_app_name">My Poopy</string>
+        </config-file>
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
@@ -90,5 +94,10 @@
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="cordova-plugin-android-permissions" spec="^1.0.0" />
+    <plugin name="cordova-plugin-facebook4" spec="^3.0.0">
+        <variable name="APP_ID" value="268407740454238" />
+        <variable name="APP_NAME" value="My Poopy" />
+        <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.36.0" />
+    </plugin>
     <engine name="android" spec="7.1.1" />
 </widget>
