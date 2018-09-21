@@ -8,10 +8,13 @@ import { MyApp } from './app.component';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { AngularFireModule } from 'angularfire2';
 
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ",
@@ -33,7 +36,8 @@ firebase.initializeApp(firebaseConfig);
     IonicModule.forRoot(MyApp),
     IntroPageModule, 
     LoginPageModule,
-    MapsPageModule
+    MapsPageModule,
+    AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -44,7 +48,8 @@ firebase.initializeApp(firebaseConfig);
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidPermissions,
-    Facebook    
+    Facebook,
+    GooglePlus
   ]
 })
 export class AppModule {}

@@ -14,9 +14,13 @@
 
 
 <ion-content padding>
-  <button ion-button clear (click)="goToTabsPage()">Skip</button>
+  <!--<button ion-button clear (click)="goToTabsPage()">Skip</button> -->
   <button ion-button icon-left block (click)="fbLogin()">
     <ion-icon name="logo-facebook"></ion-icon>
     Login com Facebook
+  </button>
+  <button ion-button icon-left block (click)="googleLogin()">
+    <ion-icon name="logo-googleplus"></ion-icon>
+    Login com Google
   </button>
 </ion-content>

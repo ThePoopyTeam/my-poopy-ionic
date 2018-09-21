@@ -99,5 +99,8 @@
         <variable name="APP_NAME" value="My Poopy" />
         <variable name="FACEBOOK_ANDROID_SDK_VERSION" value="4.36.0" />
     </plugin>
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.1">
+        <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.192689498859-66libcec4t10p7m49igtn9lqg9f11tco" />
+    </plugin>
     <engine name="android" spec="7.1.1" />
 </widget>
