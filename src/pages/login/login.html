@@ -9,7 +9,7 @@
     Você já está logado no sistema! {{ user.uid }}
 
     <button ion-button
-      *ngIf="!user.uid"
+      *ngIf="user.uid"
       (tap)="signOut()">
         Logout
     </button>
