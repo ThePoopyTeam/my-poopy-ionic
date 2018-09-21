@@ -11,6 +11,8 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
 import { Geolocation } from '@ionic-native/geolocation';
+import { ConnectivityProvider } from '../providers/connectivity/connectivity';
+import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { Geolocation } from '@ionic-native/geolocation';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidPermissions,
-    Geolocation
+    Geolocation,
+    ConnectivityProvider,
+    GoogmeMapsClusterProvider
   ]
 })
 export class AppModule {}
