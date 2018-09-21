@@ -10,6 +10,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
+import { Geolocation } from '@ionic-native/geolocation';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { MapsPageModule } from '../pages/maps/maps.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidPermissions,
+    Geolocation
   ]
 })
 export class AppModule {}
