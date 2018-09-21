@@ -1,3 +1,32 @@
 page-login {
+    .buttonlogin {
+        width: 250px;
+        height: 40px;
+    }
 
+    .google {
+        background-color: red;
+        margin: 10px auto 0;
+       
+    }
+
+    .facebook {
+        margin: 0px auto 0;
+    }
+
+    p.descricao {
+        font-weight: 400;
+        font-size: 1.5pc;
+        margin-top: 280px;
+        text-align: center;
+    }
+
+    #logo-login {
+        width: 250px;
+        height: 241px;
+        position: absolute;
+        left: 50%;
+        margin-left: -125px;
+        margin-top: 20px;
+    }
 }

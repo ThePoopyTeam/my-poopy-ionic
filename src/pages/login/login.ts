@@ -56,6 +56,7 @@ export class LoginPage {
       firebase.auth().signInWithCredential(gc).then(suc => {
         alert("Google login success");
         alert(JSON.stringify(suc));
+        this.navCtrl.push(MapsPage);
       }).catch(ns => {
         alert("Google login not success");
       })
