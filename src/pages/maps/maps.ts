@@ -2,12 +2,7 @@ import {Component} from '@angular/core'
 import {IonicPage} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
 
-/**
- * Generated class for the MapsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+declare var google: any;
 
 declare var google;
 
@@ -17,6 +12,8 @@ declare var google;
   templateUrl: 'maps.html',
 })
 export class MapsPage {
+  @ViewChild('map') mapRef : ElementRef;
+  map: any;
 
   map: any;
   marker: any
@@ -43,7 +40,5 @@ export class MapsPage {
       }).catch((error) => {
         console.log('Erro ao recuperar sua posição', error);
       });
-
-
   }
 }
