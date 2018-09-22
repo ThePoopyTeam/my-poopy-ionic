@@ -14,6 +14,9 @@ import { AngularFireModule } from 'angularfire2';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
+import { Geolocation } from '@ionic-native/geolocation';
+import { ConnectivityProvider } from '../providers/connectivity/connectivity';
+import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
 
 
 export const firebaseConfig = {
@@ -48,6 +51,9 @@ firebase.initializeApp(firebaseConfig);
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AndroidPermissions,
+    Geolocation,
+    ConnectivityProvider,
+    GoogmeMapsClusterProvider,
     Facebook,
     GooglePlus
   ]

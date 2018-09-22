@@ -1,6 +1,7 @@
 # Projeto My Poopy Ionic
 
 Versão do projeto My Poopy em Ionic. 
+Desenvolvedor desta branch Priscila Caimi
 
 ## Antes de baixar o projeto você deve fazer o seguinte:
 

@@ -1,7 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core'
+import {IonicPage} from 'ionic-angular'
+import {Geolocation} from '@ionic-native/geolocation'
 
 declare var google: any;
+
+declare var google;
 
 @IonicPage()
 @Component({
@@ -12,23 +15,30 @@ export class MapsPage {
   @ViewChild('map') mapRef : ElementRef;
   map: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  map: any;
+  marker: any
 
+  constructor(private geolocation: Geolocation) { }
+ 
   ionViewDidLoad() {
-    console.log(this.mapRef);
-    this.showMap();
+    this.geolocation.getCurrentPosition()
+      .then((resp) => {
+        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+ 
+        const mapOptions = {
+          zoom: 18,
+          center: position
+        }
+ 
+        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ 
+        this.marker = new google.maps.Marker({
+          position: position,
+          map: this.map
+        });
+ 
+      }).catch((error) => {
+        console.log('Erro ao recuperar sua posição', error);
+      });
   }
-
-  showMap() {
-    const location = new google.maps.LatLng(51.507351, -0.127758);
-
-    const options ={
-      center: location,
-      zoom: 10
-    }
-
-    this.map = new google.maps.Map(this.mapRef.nativeElement, options);
-  }
-
 }
