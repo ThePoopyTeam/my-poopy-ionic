@@ -4,7 +4,6 @@ import { MapsPage } from '../maps/maps';
 import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { AngularFireModule } from 'angularfire2';
 /**
  * Generated class for the LoginPage page.
  *

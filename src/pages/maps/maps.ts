@@ -2,7 +2,6 @@ import {Component} from '@angular/core'
 import {IonicPage} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
 
-declare var google: any;
 
 declare var google;
 
@@ -12,9 +11,7 @@ declare var google;
   templateUrl: 'maps.html',
 })
 export class MapsPage {
-  @ViewChild('map') mapRef : ElementRef;
-  map: any;
-
+  
   map: any;
   marker: any
 
