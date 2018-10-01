@@ -7,11 +7,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IntroPage } from '../pages/intro/intro';
 
 import { AndroidPermissions } from '@ionic-native/android-permissions';
+
+// Teste do menu
+import { HamburgerMenuPage } from '../pages/hamburger-menu/hamburger-menu';
+import { MapsPage } from '../pages/maps/maps';
+
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = IntroPage;
+  rootPage:any = MapsPage;
 
   constructor(
     public platform: Platform, 

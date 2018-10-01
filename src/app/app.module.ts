@@ -40,10 +40,11 @@ firebase.initializeApp(firebaseConfig);
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(HamburgerMenuPageModule),
+    IonicModule.forRoot(MyApp),
     IntroPageModule, 
     LoginPageModule,
     MapsPageModule,
+    HamburgerMenuPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],

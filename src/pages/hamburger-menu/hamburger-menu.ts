@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+
+import { IonicPage, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the HamburgerMenuPage page.
@@ -15,7 +17,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HamburgerMenuPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( menu: MenuController) {
+    menu.enable(true);
   }
 
   ionViewDidLoad() {
