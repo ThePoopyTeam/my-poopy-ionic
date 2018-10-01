@@ -15,6 +15,10 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
 import { Geolocation } from '@ionic-native/geolocation';
+
+import { HamburgerMenuPageModule } from '../pages/hamburger-menu/hamburger-menu.module';
+
+
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
 
@@ -36,7 +40,7 @@ firebase.initializeApp(firebaseConfig);
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(HamburgerMenuPageModule),
     IntroPageModule, 
     LoginPageModule,
     MapsPageModule,
