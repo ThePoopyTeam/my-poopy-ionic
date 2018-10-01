@@ -24,7 +24,8 @@ export class MapsPage {
  
         const mapOptions = {
           zoom: 18,
-          center: position
+          center: position,
+          disableDefaultUI: true
         }
  
         this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
