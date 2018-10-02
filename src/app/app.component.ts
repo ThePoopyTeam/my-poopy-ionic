@@ -4,12 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 
-import { IntroPage } from '../pages/intro/intro';
+// import { IntroPage } from '../pages/intro/intro';
 
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 // Teste do menu
-import { HamburgerMenuPage } from '../pages/hamburger-menu/hamburger-menu';
+// import { HamburgerMenuPage } from '../pages/hamburger-menu/hamburger-menu';
 import { MapsPage } from '../pages/maps/maps';
 
 @Component({

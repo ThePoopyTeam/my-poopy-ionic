@@ -16,7 +16,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
 import { Geolocation } from '@ionic-native/geolocation';
 
-import { HamburgerMenuPageModule } from '../pages/hamburger-menu/hamburger-menu.module';
+import { MenuhamburgerPageModule } from '../pages/menuhamburger/menuhamburger.module';
 
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
@@ -44,7 +44,7 @@ firebase.initializeApp(firebaseConfig);
     IntroPageModule, 
     LoginPageModule,
     MapsPageModule,
-    HamburgerMenuPageModule,
+    MenuhamburgerPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
   ],
   bootstrap: [IonicApp],

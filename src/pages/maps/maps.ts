@@ -23,9 +23,8 @@ export class MapsPage {
         const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
  
         const mapOptions = {
-          zoom: 18,
+          zoom: 16,
           center: position,
-          disableDefaultUI: true
         }
  
         this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
