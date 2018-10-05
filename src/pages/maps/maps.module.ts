@@ -5,10 +5,11 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { MenuPage } from '../menu/menu';
 import { MenuPageModule } from '../menu/menu.module'
 
+
+
 @NgModule({
   declarations: [
-    MapsPage,
-    
+    MapsPage
   ],
   imports: [
     IonicPageModule.forChild(MapsPage),
