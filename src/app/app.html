@@ -1,25 +1,23 @@
 <ion-menu [content]="conteudo" side="left" id="menu">
-    <ion-header>
+    <ion-header id="menu-perfil">
         <ion-toolbar>
             <ion-title>My Poopy</ion-title>
         </ion-toolbar>
     </ion-header>
 
-    <ion-content>
-        <ion-list>
-            <button menu-close></button>
-            <button ion-item (click)= "openPage(MapsPage)"> Adicionar </button>
-            <button ion-item (click)= "openPage(CadastroBanheiroPage)"> Adicionar </button>
-            <button ion-item (click)= "openPage(avaliarBanheiro)"> Avaliar </button>
-            <button ion-item (click)= "openPage(reportarBanheiro)"> Reportar </button>
-            <button ion-item (click)= "openPage(ranking)"> Ranking </button>
+    <ion-content id="menu-item">
+        <ion-list id="menu-item">
+            <button ion-item> Inicio </button>
+            <button ion-item> Cadastro </button>
+            <button ion-item> Avaliar </button>
+            <button ion-item> Reportar </button>
+            <button ion-item> Ranking </button>
         </ion-list>
     </ion-content>
 
-    <ion-content>
-        <ion-list ion-item>Configurações</ion-list>
-        <ion-list ion-item>Avalie</ion-list>
-    </ion-content>
+    <ion-footer id="menu-footer">
+        <ion-title>Footer</ion-title>
+    </ion-footer>
 </ion-menu>
 
 
