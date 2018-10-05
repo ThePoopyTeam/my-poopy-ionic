@@ -1,0 +1,36 @@
+<!--
+  Generated template for the MenuPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<!-- <ion-header>
+
+  <ion-navbar>
+    <ion-title>menu</ion-title>
+  </ion-navbar>
+
+</ion-header> -->
+
+<ion-menu [content]="conteudo">
+    <button ion-button icon-start>
+      <ion-icon name="home"></ion-icon>
+        Left Icon
+    </button>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item (click)= "openPage(cadastroBanheiro)"> Adicionar </button>
+      <button ion-item (click)= "openPage(avaliarBanheiro)"> Avaliar </button>
+      <button ion-item (click)= "openPage(reportarBanheiro)"> Reportar </button>
+      <button ion-item (click)= "openPage(ranking)"> Ranking </button>
+    </ion-list>
+  </ion-content>
+
+  <ion-content>
+    <ion-list ion-item>Configurações</ion-list>
+    <ion-list ion-item>Avalie</ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #conteudo></ion-nav>

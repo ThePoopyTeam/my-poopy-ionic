@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Platform, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, AlertController, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -8,15 +8,22 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
-// Teste do menu
-// import { HamburgerMenuPage } from '../pages/hamburger-menu/hamburger-menu';
+// Paginas do menu
+import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { MapsPage } from '../pages/maps/maps';
+import { MenuPage } from '../pages/menu/menu'
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  selector: 'page-app',
+
 })
 export class MyApp {
+
+  @ViewChild(Nav) nav: Nav;
   rootPage:any = MapsPage;
+
+  pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform, 
@@ -51,6 +58,15 @@ export class MyApp {
         }
       ); 
     });
+
+    // Criação das paginas para o menu
+    this.pages = [
+      { title: 'Home', component: MapsPage },
+      { title: 'Cadastrar Banheiro', component: CadastroBanheiroPage },
+    ]; 
+
+    
+
   }
 
   alertaNotificacao() {
@@ -66,5 +82,12 @@ export class MyApp {
     });
     alert.present();
   }
+
+  //
+  openPage(page) {
+    this.nav.setRoot(page.component);
+  }
+ 
+
 }
 

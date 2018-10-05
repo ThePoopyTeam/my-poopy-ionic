@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the MenuhamburgerPage page.
+ * Generated class for the CadastroBanheiroPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-menuhamburger',
-  templateUrl: 'menuhamburger.html',
+  selector: 'page-cadastro-banheiro',
+  templateUrl: 'cadastro-banheiro.html',
 })
-export class MenuhamburgerPage {
+export class CadastroBanheiroPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuhamburgerPage');
+    console.log('ionViewDidLoad CadastroBanheiroPage');
   }
 
 }
