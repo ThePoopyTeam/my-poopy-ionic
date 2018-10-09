@@ -9,27 +9,26 @@
 </button>
 
 <div #map id="map">
-  <ion-fab bottom right>
-    <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+  <ion-fab bottom right id="quicklymenu">
+    <button ion-fab mini><ion-icon name="checkmark"></ion-icon></button>
+    
     <ion-fab-list side="top">
-
       <button ion-fab [style.background-color]="color">
           <ion-icon name="add"></ion-icon>
           <div class="label">Adicionar</div>
       </button>
 
       <button ion-fab [style.background-color]="color">
-        <ion-icon name="logo-instagram"></ion-icon>
+        <ion-icon name="alert"></ion-icon>
         <div  class="label"dir="rtl">Reportar</div>
       </button>
 
       <button ion-fab [style.background-color]="color">
-        <ion-icon name="logo-twitter"></ion-icon>
+        <ion-icon name="thumbs-up"></ion-icon>
         <div  class="label"dir="rtl">Avaliar</div>
       </button>
     </ion-fab-list>
   </ion-fab>
-
 </div>
 
 
