@@ -7,7 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 // import { IntroPage } from '../pages/intro/intro';
 
 // Paginas do menu
-// import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
+import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { MapsPage } from '../pages/maps/maps';
 
 @Component({
@@ -16,7 +16,7 @@ import { MapsPage } from '../pages/maps/maps';
 })
 
 export class MyApp {
-  rootPage:any = MapsPage;
+  rootPage:any = CadastroBanheiroPage;
 
   constructor(
     public platform: Platform, 
