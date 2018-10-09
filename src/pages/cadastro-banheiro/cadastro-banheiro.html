@@ -8,5 +8,33 @@
   <ion-icon name="menu"></ion-icon>
 </button>
 
-<div #cadastro id="cadastro"></div>
+<div #cadastro id="cadastro">
+    
+  <form id="formulario">
+      <ion-row id="form-titulo">
+        <ion-col text-center>     
+          <ion-label>Cadastro de Banheiro</ion-label>
+        </ion-col>
+      </ion-row>
+
+      <ion-item>
+        <ion-label floating>Nome do Estabelicimento</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Endereço do Estabelecimento</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+    </form>
+
+    <ion-row id="btnSalvar">
+      <ion-col col-4>
+        <button ion-button color="secondary" (click)="onSalve()">
+        Salvar
+        </button>
+      </ion-col>
+    </ion-row>  
+    
+</div>
 

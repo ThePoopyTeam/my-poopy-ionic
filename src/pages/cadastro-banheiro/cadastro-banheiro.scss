@@ -1,3 +1,34 @@
 page-cadastro-banheiro {
+    
+    // #cadastro{
+    //     position: absolute;
+    //     z-index: 2;
+    // }
 
+    #formulario{
+        position: relative;
+        color: #2A2B2B;
+        padding-top: 5%;
+    }
+
+    #form-titulo {
+        position: relativo;
+        padding-top: 2%;
+        padding-bottom: 5%;
+        color: #E73D18;
+        font-size: 15pt;
+
+    }
+  
+    #btnSalvar{
+        
+    }
+
+    .color{
+        azul: #1F8AFF;
+        verde: #12CF9B;
+        laranja: #E73D18;
+        cinza:#2A2B2B;
+
+    }
 }
