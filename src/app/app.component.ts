@@ -3,7 +3,6 @@ import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-
 // import { IntroPage } from '../pages/intro/intro';
 
 // Paginas do menu

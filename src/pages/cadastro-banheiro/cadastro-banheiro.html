@@ -9,7 +9,8 @@
 </button>
 
 <div #cadastro id="cadastro">
-    
+
+  <!--Formulario de Cadastro do Banheiro-->
   <form id="formulario">
     <ion-row id="form-titulo">
       <ion-col text-center>     
@@ -28,29 +29,43 @@
     </ion-item>
   </form>
 
-  <ion-list id="caracteristicas">
-    <ion-item>
-      <ion-label>Sam</ion-label>
-      <ion-toggle color= "danger" checked="false"></ion-toggle>
-    </ion-item>
 
-    <ion-item>
-      <ion-icon name="heart" isActive="true"></ion-icon>
-    </ion-item>
+  <!-- Lista de Caracteristicas do banheiro -->
+  <ion-content>
+    <ion-card *ngFor='let caracteristica of catacteristicas'>
+      <ion-item>
+        <ion-avatar item-start>
+          <img [src]="caracteristica.thumbnailUrl">
+        </ion-avatar>
+        <h2 text-capitalize>{{caracteristica.title}}</h2>
+      </ion-item>
+    </ion-card>
 
-    <ion-item>
-      <ion-icon name="heart" isActive="false"></ion-icon>
-    </ion-item>
-    
-  </ion-list>
+    <!-- Scroll da página conforme for adicionando mais itens -->
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 
-  <ion-row id="btnSalvar">
+  </ion-content>
+  
+  <!--
+  <ion-list >
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/banheiro/mulhercolorido.png">
+      </ion-avatar>
+      <ion-label>Feminino</ion-label>
+      <ion-toggle color= 'secondary' checked="false"></ion-toggle>
+    </ion-item>
+  -->
+
+  <!--<ion-row id="btnSalvar">
     <ion-col col-4>
       <button ion-button color="primary" (click)="onSalve()">
       Salvar
       </button>
     </ion-col>
-  </ion-row>  
-    
+  </ion-row>-->
+     
 </div>
 

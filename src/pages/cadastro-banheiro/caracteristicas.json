@@ -1,0 +1,23 @@
+{"resultados":[
+    {
+        "nome": "femino",
+        "icone": "assets/banheiro/mulhercolorido.png"
+    },
+    {
+        "nome": "masculino",
+        "icone": "assets/banheiro/homencolorido.png"
+    },
+    {
+        "nome": "unissex",
+        "icone": "assets/banheiro/unissexcolorido.png"
+    },
+    {
+        "nome": "familia",
+        "icone": "assets/banheiro/familia.png"
+    },
+    {
+        "nome": "pcd",
+        "icone": "assets/banheiro/mulhercolorido.png"
+    }
+    ]
+}
