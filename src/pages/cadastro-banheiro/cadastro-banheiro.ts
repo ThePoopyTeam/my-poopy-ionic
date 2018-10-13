@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, InfiniteScroll, Platform } from 'ionic-angular';
-import { HttpClient, HttpClientModule,} from '@angular/common/http';
+import { IonicPage, NavController, Platform } from 'ionic-angular';
+import { HttpClient,} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
 /**
  * Generated class for the CadastroBanheiroPage page.

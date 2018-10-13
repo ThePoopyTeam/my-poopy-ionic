@@ -1,9 +1,4 @@
 page-cadastro-banheiro {
-    
-    // #cadastro{
-    //     position: absolute;
-    //     z-index: 2;
-    // }
 
     #formulario{
         position: relative;
@@ -21,12 +16,14 @@ page-cadastro-banheiro {
 
     }
   
-    #btnSalvar{
-        
+    #lista {
+        padding-top: 70%;
+        padding-bottom: 10%;
     }
 
-    #imagem {
-        width: 80px; 
-        height: 80px;
+    #btnSalvar{
+        padding-top: 10%;
+        position: relative;
+
     }
 }

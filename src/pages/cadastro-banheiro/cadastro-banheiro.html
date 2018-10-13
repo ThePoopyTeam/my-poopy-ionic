@@ -31,13 +31,14 @@
 
 
   <!-- Lista de Caracteristicas do banheiro -->
-  <ion-content>
+  <ion-content id="lista">
     <ion-card *ngFor='let caracteristica of catacteristicas'>
       <ion-item>
         <ion-avatar item-start>
           <img [src]="caracteristica.thumbnailUrl">
         </ion-avatar>
         <h2 text-capitalize>{{caracteristica.title}}</h2>
+        <ion-toggle color= 'secondary' checked="false"></ion-toggle>
       </ion-item>
     </ion-card>
 
@@ -45,27 +46,15 @@
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
       <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
-
   </ion-content>
-  
-  <!--
-  <ion-list >
-    <ion-item>
-      <ion-avatar item-start>
-        <img src="assets/banheiro/mulhercolorido.png">
-      </ion-avatar>
-      <ion-label>Feminino</ion-label>
-      <ion-toggle color= 'secondary' checked="false"></ion-toggle>
-    </ion-item>
-  -->
 
-  <!--<ion-row id="btnSalvar">
+  <ion-row id="btnSalvar">
     <ion-col col-4>
       <button ion-button color="primary" (click)="onSalve()">
       Salvar
       </button>
     </ion-col>
-  </ion-row>-->
+  </ion-row>
      
 </div>
 

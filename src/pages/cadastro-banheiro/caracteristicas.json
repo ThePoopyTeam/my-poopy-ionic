@@ -1,23 +1,22 @@
-{"resultados":[
+[
     {
         "nome": "femino",
-        "icone": "assets/banheiro/mulhercolorido.png"
+        "icone": "https://drive.google.com/open?id=1H4Sj8vQTKycrWfyj1CE7d7VMNyxh4thG"
     },
     {
         "nome": "masculino",
-        "icone": "assets/banheiro/homencolorido.png"
+        "icone": "https://drive.google.com/open?id=18At1gHNkH0GUwN5nFD2WzaAVEoexCHET"
     },
     {
         "nome": "unissex",
-        "icone": "assets/banheiro/unissexcolorido.png"
+        "icone": "https://drive.google.com/open?id=1lJq0sUOUA8yYHc7ZYnXIwe1TukaTAsI7"
     },
     {
         "nome": "familia",
-        "icone": "assets/banheiro/familia.png"
+        "icone": "https://drive.google.com/open?id=1Ucj1vUfwIAdzHS6knxfSwf0g8S2ALmI4"
     },
     {
         "nome": "pcd",
-        "icone": "assets/banheiro/mulhercolorido.png"
+        "icone": "https://drive.google.com/open?id=1GHULSma2E2sUbOaVDPyJMT0th5S2seg8"
     }
-    ]
-}
+]
