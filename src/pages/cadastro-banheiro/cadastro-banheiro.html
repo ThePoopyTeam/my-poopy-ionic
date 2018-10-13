@@ -4,8 +4,9 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <button id="botaomenu" color="dark" clear ion-button menuToggle>
-  <ion-icon name="menu"></ion-icon>
+  <ion-icon name="menu" lg></ion-icon>
 </button>
 
 <div #cadastro id="cadastro">
@@ -18,43 +19,60 @@
       </ion-col>
     </ion-row>
 
-    <ion-item>
-      <ion-label floating>Nome do Estabelicimento</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+    <div id='form-item'>
+      <ion-item >
+        <ion-label id="label" floating>Nome do Estabelicimento</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label floating>Endereço do Estabelecimento</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label id="label" floating>Endereço do Estabelecimento</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label id="label">Horário de Abertura</ion-label>
+        <ion-input type="time"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label id="label">Horário de Fechamento: </ion-label>
+        <ion-input type="time"></ion-input>
+      </ion-item>
+    </div>
   </form>
 
 
   <!-- Lista de Caracteristicas do banheiro -->
-  <ion-content id="lista">
-    <ion-card *ngFor='let caracteristica of catacteristicas'>
-      <ion-item>
-        <ion-avatar item-start>
-          <img [src]="caracteristica.thumbnailUrl">
-        </ion-avatar>
-        <h2 text-capitalize>{{caracteristica.title}}</h2>
-        <ion-toggle color= 'secondary' checked="false"></ion-toggle>
-      </ion-item>
-    </ion-card>
-
-    <!-- Scroll da página conforme for adicionando mais itens -->
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-  </ion-content>
-
-  <ion-row id="btnSalvar">
-    <ion-col col-4>
-      <button ion-button color="primary" (click)="onSalve()">
-      Salvar
-      </button>
+  <ion-row>
+    <ion-col col-6>
+      <ion-content id="lista">
+        <ion-card *ngFor='let caracteristica of catacteristicas'>
+          <ion-item>
+            <ion-avatar item-start>
+              <img [src]="caracteristica.thumbnailUrl">
+            </ion-avatar>
+            <ion-label>{{caracteristica.title}}</ion-label>
+            <ion-toggle color= 'secondary' checked="false"></ion-toggle>
+          </ion-item>
+        </ion-card>
+    
+        <!-- Scroll da página conforme for adicionando mais itens -->
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+          <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+      </ion-content>
     </ion-col>
   </ion-row>
      
 </div>
 
+<ion-footer>
+  <ion-toolbar id="toolbar">
+      <ion-buttons end>
+        <button ion-button icon-end color="secondary" (click)="onSalve()">
+          Salvar
+        </button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

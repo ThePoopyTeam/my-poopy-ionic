@@ -1,5 +1,4 @@
 page-cadastro-banheiro {
-
     #formulario{
         position: relative;
         color: #2A2B2B;
@@ -9,21 +8,25 @@ page-cadastro-banheiro {
 
     #form-titulo {
         position: relativo;
-        padding-top: 2%;
         padding-bottom: 5%;
         color: #E73D18;
         font-size: 15pt;
+    }
 
+    #form-item{
+        position: relative;
+        
+    }
+
+    #label {
+        color: #2A2B2B;
+        font-size:12pt;
     }
   
     #lista {
-        padding-top: 70%;
-        padding-bottom: 10%;
+        padding: 100%
     }
 
-    #btnSalvar{
-        padding-top: 10%;
-        position: relative;
 
-    }
+
 }

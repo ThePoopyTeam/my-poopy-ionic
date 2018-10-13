@@ -7,7 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
-import { MapsPage } from '../pages/maps/maps';
+// import { MapsPage } from '../pages/maps/maps';
 
 @Component({
   templateUrl: 'app.html',
