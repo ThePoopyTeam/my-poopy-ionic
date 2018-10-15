@@ -1,24 +1,29 @@
-import { Component } from '@angular/core';
-import { Platform, AlertController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Platform, AlertController, Nav, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { IntroPage } from '../pages/intro/intro';
 
-import { AndroidPermissions } from '@ionic-native/android-permissions';
+// Paginas do menu
+import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
+import { MapsPage } from '../pages/maps/maps';
+
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  selector: 'page-app'
 })
+
 export class MyApp {
-  rootPage:any = IntroPage;
+  rootPage:any = MapsPage;
 
   constructor(
     public platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
     ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -46,6 +51,8 @@ export class MyApp {
         }
       ); 
     });
+    
+   
   }
 
   alertaNotificacao() {
@@ -61,5 +68,6 @@ export class MyApp {
     });
     alert.present();
   }
+
 }
 

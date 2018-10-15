@@ -1,5 +1,10 @@
 page-maps {
     #map {
         height: 100%;
+        z-index: 1;
+    }
+    #botaomenu{
+        position: absolute;
+        z-index: 2;
     }
 }
