@@ -15,7 +15,6 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { MapsPageModule } from '../pages/maps/maps.module';
 import { Geolocation } from '@ionic-native/geolocation';
-import { MenuPageModule } from '../pages/menu/menu.module';
 import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-banheiro.module'
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
@@ -43,7 +42,6 @@ firebase.initializeApp(firebaseConfig);
     IntroPageModule, 
     LoginPageModule,
     MapsPageModule,
-    MenuPageModule,
     CadastroBanheiroPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
   ],

@@ -2,8 +2,6 @@ import {Component} from '@angular/core'
 import {IonicPage} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
 
-import { MenuPage } from '../menu/menu';
-
 declare var google;
 
 @IonicPage()
