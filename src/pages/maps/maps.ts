@@ -2,13 +2,13 @@ import {Component} from '@angular/core'
 import {IonicPage} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
 
-
 declare var google;
 
 @IonicPage()
 @Component({
   selector: 'page-maps',
   templateUrl: 'maps.html',
+  
 })
 export class MapsPage {
   
@@ -23,8 +23,9 @@ export class MapsPage {
         const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
  
         const mapOptions = {
-          zoom: 18,
-          center: position
+          zoom: 16,
+          center: position,
+          disableDefaultUI: true
         }
  
         this.map = new google.maps.Map(document.getElementById('map'), mapOptions);

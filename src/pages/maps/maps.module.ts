@@ -10,6 +10,7 @@ import { Geolocation } from '@ionic-native/geolocation';
   ],
   imports: [
     IonicPageModule.forChild(MapsPage),
+    
   ],
   providers: [
     Geolocation,

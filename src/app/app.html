@@ -1,1 +1,21 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="conteudo" side="left" id="menu">
+    <ion-header id="menu-perfil">
+        <ion-toolbar>
+            <ion-title>My Poopy</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content id="menu-item">
+        <ion-list id="menu-item">
+            <button ion-item> Inicio </button>
+            <button ion-item> Cadastro </button>
+            <button ion-item> Avaliar </button>
+            <button ion-item> Reportar </button>
+            <button ion-item> Ranking </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<ion-nav [root]="rootPage" #conteudo></ion-nav>
+
