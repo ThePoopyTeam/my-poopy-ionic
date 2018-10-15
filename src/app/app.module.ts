@@ -19,6 +19,8 @@ import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
+import { HttpClientModule } from '@angular/common/http'
+
 
 
 export const firebaseConfig = {
@@ -44,6 +46,7 @@ firebase.initializeApp(firebaseConfig);
     MapsPageModule,
     CadastroBanheiroPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
