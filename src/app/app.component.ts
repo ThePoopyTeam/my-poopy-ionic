@@ -7,7 +7,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
-// import { MapsPage } from '../pages/maps/maps';
+import { IntroPage } from '../pages/intro/intro';
+import { MapsPage } from '../pages/maps/maps';
 
 @Component({
   templateUrl: 'app.html',
@@ -15,7 +16,9 @@ import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banhei
 })
 
 export class MyApp {
-  rootPage:any = CadastroBanheiroPage;
+  rootPage:any = MapsPage;
+  homePage:any;
+  cadastroPage:any;
 
   constructor(
     public platform: Platform, 
@@ -51,6 +54,10 @@ export class MyApp {
       ); 
     });
     
+    // Ações No Menu - side bar
+    this.homePage = MapsPage;
+    this.cadastroPage = CadastroBanheiroPage;
+    
    
   }
 
@@ -66,6 +73,10 @@ export class MyApp {
       ]
     });
     alert.present();
+  }
+
+  openPage(opcao) {
+    this.rootPage = opcao;
   }
 
 }

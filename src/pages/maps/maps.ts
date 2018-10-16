@@ -1,6 +1,10 @@
 import {Component} from '@angular/core'
-import {IonicPage} from 'ionic-angular'
+import {IonicPage, NavController} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
+
+import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
+import { IntroPage } from '../intro/intro';
+
 
 declare var google;
 
@@ -13,9 +17,21 @@ declare var google;
 export class MapsPage {
   
   map: any;
-  marker: any
+  marker: any;
+  rootPage: MapsPage;
 
-  constructor(private geolocation: Geolocation) { }
+  homePage:any;
+  cadastroPage:any;
+  introPage:any;
+
+  constructor(private geolocation: Geolocation, public navCtrl: NavController) { 
+
+    // Ações do menu rápido
+    this.homePage = MapsPage;
+    this.cadastroPage = CadastroBanheiroPage;
+    this.introPage = IntroPage;
+
+  }
  
   ionViewDidLoad() {
     this.geolocation.getCurrentPosition()
@@ -39,4 +55,10 @@ export class MapsPage {
         console.log('Erro ao recuperar sua posição', error);
       });
   }
+
+
+  goToOtherPage(opcao) {
+    this.navCtrl.push(opcao);
+  }
+
 }
