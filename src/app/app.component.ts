@@ -7,6 +7,7 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
+import { IntroPage } from '../pages/intro/intro';
 // import { MapsPage } from '../pages/maps/maps';
 
 @Component({
@@ -15,7 +16,9 @@ import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banhei
 })
 
 export class MyApp {
-  rootPage:any = CadastroBanheiroPage;
+  //bota um if aqui, se tem uid no storage vai para mapa se não para intro
+
+  rootPage:any = IntroPage;
 
   constructor(
     public platform: Platform, 

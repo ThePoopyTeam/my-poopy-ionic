@@ -19,8 +19,10 @@ import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
-import { HttpClientModule } from '@angular/common/http'
-
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { UsersProvider } from '../providers/users/users';
+import { IonicStorageModule } from '@ionic/storage';
 
 
 export const firebaseConfig = {
@@ -47,6 +49,8 @@ firebase.initializeApp(firebaseConfig);
     CadastroBanheiroPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
+    HttpModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,7 +65,8 @@ firebase.initializeApp(firebaseConfig);
     ConnectivityProvider,
     GoogmeMapsClusterProvider,
     Facebook,
-    GooglePlus
+    GooglePlus,
+    UsersProvider
   ]
 })
 export class AppModule {}

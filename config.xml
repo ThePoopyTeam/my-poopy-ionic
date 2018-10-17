@@ -3,7 +3,7 @@
     <name>my-poopy</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.105:8100" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -108,4 +108,6 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.192689498859-66libcec4t10p7m49igtn9lqg9f11tco" />
     </plugin>
     <allow-navigation href="http://192.168.15.8:8100" sessionid="93b747f7" />
+    <allow-navigation href="http://192.168.1.105:8100" sessionid="5239053d" />
+    <engine name="android" spec="7.1.1" />
 </widget>

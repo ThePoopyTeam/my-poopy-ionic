@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
-
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the IntroPage page.
  *
@@ -42,17 +42,28 @@ export class IntroPage {
       image: "assets/imgs/350x450.png",
     },
   ];
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');
+
+    this.storage.get('intro-done').then(done => {
+      if (done) {
+        this.navCtrl.push(LoginPage);
+      }
+    });
+    
   }
 
   goToTabsPage() {
     //push another page onto the history stack
     //causing the nav controller to animate the new page in
+    this.storage.set('intro-done', true);
     this.navCtrl.push(LoginPage);
+    
+    
+
   }
 
 }
