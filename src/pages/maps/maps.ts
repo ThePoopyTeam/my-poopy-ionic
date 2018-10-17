@@ -1,8 +1,16 @@
-import {Component} from '@angular/core'
-import {IonicPage} from 'ionic-angular'
+import {Component, ViewChild, ElementRef} from '@angular/core'
+import {IonicPage, Platform} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
+import {
+  GoogleMaps,
+  GoogleMap,
+  GoogleMapsEvent,
+  GoogleMapOptions,
+  CameraPosition,
+  MarkerOptions,
+  Marker,
+  Environment, LocationService, MyLocationOptions, MyLocation } from '@ionic-native/google-maps'
 
-declare var google;
 
 @IonicPage()
 @Component({
@@ -12,31 +20,45 @@ declare var google;
 })
 export class MapsPage {
   
-  map: any;
-  marker: any
+  map: GoogleMap;
+  //map: any;
+  //marker: any
 
-  constructor(private geolocation: Geolocation) { }
- 
-  ionViewDidLoad() {
-    this.geolocation.getCurrentPosition()
-      .then((resp) => {
-        const position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
- 
-        const mapOptions = {
-          zoom: 16,
-          center: position,
-          disableDefaultUI: true
+  constructor(public googlemaps: GoogleMaps, platform: Platform) {
+    platform.ready().then(() => {
+      this.loadMap();
+    });
+  }
+
+  loadMap() {
+
+    // This code is necessary for browser
+    Environment.setEnv({
+      'API_KEY_FOR_BROWSER_RELEASE': '(your api key for `https://`)',
+      'API_KEY_FOR_BROWSER_DEBUG': '(your api key for `http://`)'
+    });
+  
+
+    LocationService.getMyLocation().then((location: MyLocation) => {
+      console.log(location);
+      let options: GoogleMapOptions = {
+        camera: {
+          target: location.latLng,
+          zoom:16
+        },
+        controls:{
+          'myLocationButton': true,
+          'myLocation': true,   // (blue dot)
         }
- 
-        this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
- 
-        this.marker = new google.maps.Marker({
-          position: position,
-          map: this.map
-        });
- 
-      }).catch((error) => {
-        console.log('Erro ao recuperar sua posição', error);
-      });
+        
+      };
+
+      this.map = GoogleMaps.create('map_canvas', options);
+
+    });
+    
   }
 }
+  
+  
+
