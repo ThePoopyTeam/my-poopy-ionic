@@ -9,6 +9,7 @@ import { Storage } from '@ionic/storage';
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
+import { MapsPage } from '../pages/maps/maps';
 
 
 @Component({
@@ -67,6 +68,15 @@ export class MyApp {
           this.rootPage = LoginPage
         }
       });
+
+      this.storage.get('uid').then(done => {
+        if (!done) {
+          this.rootPage = LoginPage
+        } else {
+          this.rootPage = MapsPage
+        }
+      });
+
     });
     
    

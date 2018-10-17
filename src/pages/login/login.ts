@@ -6,6 +6,9 @@ import firebase from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus';
 
 import { UsersProvider } from './../../providers/users/users';
+
+import { Storage } from '@ionic/storage';
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -20,13 +23,41 @@ import { UsersProvider } from './../../providers/users/users';
 })
 export class LoginPage {
   model: User;
+  uid: Boolean;
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams, 
+    public facebook: Facebook, 
+    public googleplus: GooglePlus, 
+    private userProvider: UsersProvider, 
+    private toast: ToastController,
+    public storage: Storage) {
+    
+    this.storage.get('uid').then(done => {
+      if (!done) {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public facebook: Facebook, public googleplus: GooglePlus, private userProvider: UsersProvider, private toast: ToastController) {
+        this.uid = true
+      } else {
+        this.navCtrl.setRoot(MapsPage);
+        this.uid = false
+      }
+    });
+
   }
-
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+
+  ionViewCanEnter(): boolean {
+
+    if (this.uid) {
+      return false
+    }
+    return true
+
+  }
+
 
   goToTabsPage() {
     //push another page onto the history stack
@@ -38,33 +69,31 @@ export class LoginPage {
     this.facebook.login(['email']).then(res => {
       const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
       firebase.auth().signInWithCredential(fc).then(fs => {
-        alert("Fb login success");
-        alert(JSON.stringify(fs));
-        //this.navCtrl.push(MapsPage);
-        this.model = new User();
-        this.model.nome = JSON.stringify(fs.displayName)
-        this.model.email = JSON.stringify(fs.email)
-        this.model.imagem = JSON.stringify(fs.photoURL)
-        this.model.experiencia = 0
-        this.model.uid = fs.uid.toString()//JSON.stringify(fs.uid)
         
-        console.log('uid: ' + this.model.uid)
+        
+        this.model = new User();
+        this.model.nome = fs.displayName.toString()
+        this.model.email = fs.email.toString()
+        this.model.imagem = fs.photoURL.toString()
+        this.model.experiencia = 0
+        this.model.uid = fs.uid.toString()
+        
  
         //chama provider
         this.userProvider.createAccount(this.model.nome, this.model.email, this.model.imagem, this.model.experiencia, this.model.uid)
           .then((result: any) => {
-            this.toast.create({ message: 'Usuário criado com sucesso. Token: ' + result.token, position: 'botton', duration: 3000 }).present();
-
+            this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
+            
+            this.storage.set('uid', true);
             //Salvar o token no Ionic Storage para usar em futuras requisições.
             //Redirecionar o usuario para outra tela usando o navCtrl
             //this.navCtrl.pop();
             //this.navCtrl.setRoot()
-            alert('Foi do login')
+            this.navCtrl.push(MapsPage);
           })
           .catch((error: any) => {
-            this.toast.create({ message: 'Erro ao criar o usuário. Erro: ' + error.error, position: 'botton', duration: 3000 }).present();
-
-            alert('não Foi do login')
+            this.toast.create({ message: 'Erro ao logar. Tente novamente!!!', position: 'botton', duration: 3000 }).present();
+            console.log(error.error)
           });
 
 
@@ -85,11 +114,35 @@ export class LoginPage {
     }).then(res => {
       const gc = firebase.auth.GoogleAuthProvider.credential(res.idToken);
       firebase.auth().signInWithCredential(gc).then(suc => {
-        alert("Google login success");
-        alert(JSON.stringify(suc));
-        this.navCtrl.push(MapsPage);
+        this.model = new User();
+        
+        this.model.nome = suc.displayName.toString()
+        this.model.email = suc.providerData[0].email.toString()
+        this.model.imagem = suc.photoURL.toString()
+        this.model.experiencia = 0
+        this.model.uid = suc.uid.toString()
+
+        //chama provider
+        this.userProvider.createAccount(this.model.nome, this.model.email, this.model.imagem, this.model.experiencia, this.model.uid)
+          .then((result: any) => {
+            this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
+
+            this.storage.set('uid', true);
+
+            //Salvar o token no Ionic Storage para usar em futuras requisições.
+            //Redirecionar o usuario para outra tela usando o navCtrl
+            //this.navCtrl.pop();
+            //this.navCtrl.setRoot()
+            this.navCtrl.push(MapsPage);
+          })
+          .catch((error: any) => {
+            this.toast.create({ message: 'Erro ao logar. Tente novamente!!!', position: 'botton', duration: 3000 }).present();
+            console.log(error.error)
+          });
+
       }).catch(ns => {
         alert("Google login not success");
+        console.log(ns)
       })
       }).catch(err => {
         alert(JSON.stringify(err));

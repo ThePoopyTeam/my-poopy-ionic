@@ -33,16 +33,11 @@ export class UsersProvider {
       console.log(data)
       
       this.http.post(this.API_URL + 'api/user/', data, { headers: { 'Content-Type': 'application/json', 'uid': uid.toString() }})
-        .subscribe((result: any) => {
-          alert('Foi')
-          resolve(result.json());
-           
-        },
-          (error) => {
-            alert('não Foi')
-            reject(error.json());
-            
-          });
+        .subscribe(res => {
+          resolve(res);
+        }, (err) => {
+          reject(err);
+        });
     });
   }
 

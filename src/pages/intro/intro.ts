@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login';
 import { Storage } from '@ionic/storage';
+import { MapsPage } from '../maps/maps';
 /**
  * Generated class for the IntroPage page.
  *
@@ -52,6 +53,16 @@ export class IntroPage {
       } else {
         this.navCtrl.setRoot(LoginPage);
         this.firstaccess = false
+      }
+    });
+
+    this.storage.get('uid').then(done => {
+      if (!done) {
+
+        
+      } else {
+        this.navCtrl.setRoot(MapsPage);
+         
       }
     });
   }
