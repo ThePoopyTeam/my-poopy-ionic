@@ -3,12 +3,13 @@ import { Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
-// import { IntroPage } from '../pages/intro/intro';
 
+import { Storage } from '@ionic/storage';
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { IntroPage } from '../pages/intro/intro';
-// import { MapsPage } from '../pages/maps/maps';
+import { LoginPage } from '../pages/login/login';
+
 
 @Component({
   templateUrl: 'app.html',
@@ -18,7 +19,10 @@ import { IntroPage } from '../pages/intro/intro';
 export class MyApp {
   //bota um if aqui, se tem uid no storage vai para mapa se não para intro
 
-  rootPage:any = IntroPage;
+  rootPage:any;
+
+  
+
 
   constructor(
     public platform: Platform, 
@@ -26,6 +30,7 @@ export class MyApp {
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
+    public storage: Storage
     ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -52,6 +57,16 @@ export class MyApp {
           }
         }
       ); 
+      
+      
+      this.storage.get('intro-done').then(done => {
+        if (!done) {
+
+          this.rootPage = IntroPage
+        } else {
+          this.rootPage = LoginPage
+        }
+      });
     });
     
    

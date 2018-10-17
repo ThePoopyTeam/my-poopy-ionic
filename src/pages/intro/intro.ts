@@ -15,6 +15,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
+  firstaccess: Boolean;
   slides = [
     {
       title: "Mapa",
@@ -43,27 +44,36 @@ export class IntroPage {
     },
   ];
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
+    
+    this.storage.get('intro-done').then(done => {
+      if (!done) {
+        
+        this.firstaccess = true
+      } else {
+        this.navCtrl.setRoot(LoginPage);
+        this.firstaccess = false
+      }
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IntroPage');
+    console.log('ionViewDidLoad IntroPage');    
+  }
 
-    this.storage.get('intro-done').then(done => {
-      if (done) {
-        this.navCtrl.push(LoginPage);
-      }
-    });
+  ionViewCanEnter(): boolean {
+    
+    if(this.firstaccess) {
+      return false
+    }
+    return true
     
   }
 
   goToTabsPage() {
     //push another page onto the history stack
     //causing the nav controller to animate the new page in
-    this.storage.set('intro-done', true);
     this.navCtrl.push(LoginPage);
-    
-    
-
+    this.storage.set('intro-done', true);
   }
 
 }

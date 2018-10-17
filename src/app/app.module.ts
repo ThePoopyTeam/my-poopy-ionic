@@ -50,7 +50,7 @@ firebase.initializeApp(firebaseConfig);
     AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
     HttpModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +66,7 @@ firebase.initializeApp(firebaseConfig);
     GoogmeMapsClusterProvider,
     Facebook,
     GooglePlus,
-    UsersProvider
+    UsersProvider,
   ]
 })
 export class AppModule {}
