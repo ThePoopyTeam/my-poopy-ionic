@@ -18,27 +18,27 @@ export class IntroPage {
   slides = [
     {
       title: "Mapa",
-      description: "Cupcake ipsum dolor sit amet candy canes. Topping danish wafer cake cookie donut candy canes wafer icing. Sugar plum gummi bears marzipan caramels.",
+      description: "Nesta tela será exibida a tua posição no mapa e todos os banheiros que se encontram na tua volta.",
       image: "assets/imgs/350x450.png",
     },
     {
       title: "Visualização do Banheiro",
-      description: "Cupcake ipsum dolor sit amet candy canes. Topping danish wafer cake cookie donut candy canes wafer icing. Sugar plum gummi bears marzipan caramels.",
+      description: "Ao clicar em cima do banheiro você poderá ver uma prévia do banheiro, como o endereço e o nome do lugar onde ele se encontra.",
       image: "assets/imgs/350x450.png",
     },
     {
       title: "Vá até o Banheiro",
-      description: "Cupcake ipsum dolor sit amet candy canes. Topping danish wafer cake cookie donut candy canes wafer icing. Sugar plum gummi bears marzipan caramels.",
+      description: "É simples de traçar a sua rota até o banheiro e chegar facilmente a ele.",
       image: "assets/imgs/350x450.png",
     },
     {
       title: "Avaliando Banheiro",
-      description: "Cupcake ipsum dolor sit amet candy canes. Topping danish wafer cake cookie donut candy canes wafer icing. Sugar plum gummi bears marzipan caramels.",
+      description: "Que tal aquela notinha para o banheiro utilizado, para as próximas pessoas que usarem saberem o que você achou dele. Não se preocupe a sua identidade será mantida.",
       image: "assets/imgs/350x450.png",
     },
     {
       title: "Cadastrando Banheiro",
-      description: "Cupcake ipsum dolor sit amet candy canes. Topping danish wafer cake cookie donut candy canes wafer icing. Sugar plum gummi bears marzipan caramels.",
+      description: "Descobriu um banheiro novo? Que tal adicionar ele no app para que mais pessoas usem ele.",
       image: "assets/imgs/350x450.png",
     },
   ];

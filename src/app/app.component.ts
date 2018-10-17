@@ -16,7 +16,7 @@ import { MapsPage } from '../pages/maps/maps';
 })
 
 export class MyApp {
-  rootPage:any = MapsPage;
+  rootPage:any = IntroPage;
   homePage:any;
   cadastroPage:any;
 
