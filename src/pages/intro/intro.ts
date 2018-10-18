@@ -18,7 +18,7 @@ export class IntroPage {
   slides = [
     {
       title: "Mapa",
-      description: "Nesta tela será exibida a tua posição no mapa e todos os banheiros que se encontram na tua volta.",
+      description: "Nesta tela será exibida a sua posição no mapa e todos os banheiros que se encontram na tua volta.",
       image: "assets/imgs/350x450.png",
     },
     {
@@ -33,7 +33,7 @@ export class IntroPage {
     },
     {
       title: "Avaliando Banheiro",
-      description: "Que tal aquela notinha para o banheiro utilizado, para as próximas pessoas que usarem saberem o que você achou dele. Não se preocupe a sua identidade será mantida.",
+      description: "Que tal aquela notinha para o banheiro utilizado, para as próximas pessoas que usarem saberem o que você achou dele. Não se preocupe a sua identidade será mantida em segredo.",
       image: "assets/imgs/350x450.png",
     },
     {
