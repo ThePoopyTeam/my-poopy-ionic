@@ -31,17 +31,17 @@ export class IntroPage {
       description: "É simples de traçar a sua rota até o banheiro e chegar facilmente a ele.",
       image: "assets/imgs/350x450.png",
     },
-    {
-      title: "Avaliando Banheiro",
-      description: "Que tal aquela notinha para o banheiro utilizado, para as próximas pessoas que usarem saberem o que você achou dele. Não se preocupe a sua identidade será mantida em segredo.",
-      image: "assets/imgs/350x450.png",
-    },
+    
+  ];
+
+  ultimoSlide = [
     {
       title: "Cadastrando Banheiro",
       description: "Descobriu um banheiro novo? Que tal adicionar ele no app para que mais pessoas usem ele.",
       image: "assets/imgs/350x450.png",
     },
-  ];
+  ]
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
