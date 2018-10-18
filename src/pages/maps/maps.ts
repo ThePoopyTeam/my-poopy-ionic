@@ -1,5 +1,5 @@
 import {Component, ViewChild, ElementRef} from '@angular/core'
-import {IonicPage, Platform} from 'ionic-angular'
+import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
 import {
   GoogleMaps,
@@ -10,6 +10,7 @@ import {
   MarkerOptions,
   Marker,
   Environment, LocationService, MyLocationOptions, MyLocation } from '@ionic-native/google-maps'
+import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
 
 
 @IonicPage()
@@ -21,10 +22,9 @@ import {
 export class MapsPage {
   
   map: GoogleMap;
-  //map: any;
-  //marker: any
 
-  constructor(public googlemaps: GoogleMaps, platform: Platform) {
+
+  constructor(public googlemaps: GoogleMaps, platform: Platform, public navController: NavController) {
     platform.ready().then(() => {
       this.loadMap();
     });
@@ -34,8 +34,8 @@ export class MapsPage {
 
     // This code is necessary for browser
     Environment.setEnv({
-      'API_KEY_FOR_BROWSER_RELEASE': '(your api key for `https://`)',
-      'API_KEY_FOR_BROWSER_DEBUG': '(your api key for `http://`)'
+      'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ',
+      'API_KEY_FOR_BROWSER_DEBUG': 'AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ'
     });
   
 
@@ -49,7 +49,13 @@ export class MapsPage {
         controls:{
           'myLocationButton': true,
           'myLocation': true,   // (blue dot)
-        }
+        },
+        gestures: {
+          scroll: true,
+          tilt: false,
+          rotate: true,
+          zoom: true
+        },
         
       };
 
@@ -57,6 +63,11 @@ export class MapsPage {
 
     });
     
+  }
+
+  adicionaBanheiro() {
+    this.navController.setRoot(CadastroBanheiroPage);
+    console.log('entrou')
   }
 }
   

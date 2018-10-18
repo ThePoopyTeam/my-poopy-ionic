@@ -8,28 +8,31 @@
   <ion-icon name="menu"></ion-icon>
 </button>
 
-<div id="map_canvas" style="width:100%; height:100%"></div>
-
-<ion-fab bottom right id="quicklymenu">
-  <button ion-fab mini><ion-icon name="checkmark"></ion-icon></button>
+<div id="map_canvas" style="width:100%; height:100%; ">
+  <ion-fab bottom right id="quicklymenu">
+    <button ion-fab mini>
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
   
-  <ion-fab-list side="top">
-    <button ion-fab [style.background-color]="color">
+    <ion-fab-list side="top">
+      <button ion-fab [style.background-color]="color" (click)="adicionaBanheiro()">
         <ion-icon name="add"></ion-icon>
         <div class="label">Adicionar</div>
-    </button>
+      </button>
+  
+      <button ion-fab [style.background-color]="color">
+        <ion-icon name="alert"></ion-icon>
+        <div class="label" dir="rtl">Reportar</div>
+      </button>
+  
+      <button ion-fab [style.background-color]="color">
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div class="label" dir="rtl">Avaliar</div>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</div>
 
-    <button ion-fab [style.background-color]="color">
-      <ion-icon name="alert"></ion-icon>
-      <div  class="label"dir="rtl">Reportar</div>
-    </button>
-
-    <button ion-fab [style.background-color]="color">
-      <ion-icon name="thumbs-up"></ion-icon>
-      <div  class="label"dir="rtl">Avaliar</div>
-    </button>
-  </ion-fab-list>
-</ion-fab>
 
 
 

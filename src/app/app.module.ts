@@ -25,6 +25,7 @@ import { UsersProvider } from '../providers/users/users';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
+import { BathroomsProvider } from '../providers/bathrooms/bathrooms';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ",
@@ -68,7 +69,8 @@ firebase.initializeApp(firebaseConfig);
     Facebook,
     GooglePlus,
     UsersProvider,
-    GoogleMaps
+    GoogleMaps,
+    BathroomsProvider
   ]
 })
 export class AppModule {}

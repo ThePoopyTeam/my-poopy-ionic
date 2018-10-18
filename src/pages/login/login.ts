@@ -85,6 +85,7 @@ export class LoginPage {
             this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
             
             this.storage.set('uid', true);
+            this.storage.set('uidNumber', this.model.uid);
             //Salvar o token no Ionic Storage para usar em futuras requisições.
             //Redirecionar o usuario para outra tela usando o navCtrl
             //this.navCtrl.pop();
@@ -128,6 +129,7 @@ export class LoginPage {
             this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
 
             this.storage.set('uid', true);
+            this.storage.set('uidNumber', this.model.uid);
 
             //Salvar o token no Ionic Storage para usar em futuras requisições.
             //Redirecionar o usuario para outra tela usando o navCtrl

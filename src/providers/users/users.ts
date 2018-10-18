@@ -1,6 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
@@ -26,8 +25,7 @@ export class UsersProvider {
         experiencia:experiencia
       };
 
-      console.log('uid create acount: ' + uid )
-     
+           
 
       
       console.log(data)
