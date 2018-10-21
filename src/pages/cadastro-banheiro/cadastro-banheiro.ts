@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, Platform } from 'ionic-angular';
-import { HttpClient,} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable'
+import { HttpClient } from '@angular/common/http';
 
 import { MapsPage } from '../maps/maps';
 
@@ -19,8 +18,6 @@ import { MapsPage } from '../maps/maps';
 })
 export class CadastroBanheiroPage {
 
-  public catacteristicas: any;
-
   rootPage:any = MapsPage;
   homePage:any;
   cadastroPage:any;
@@ -28,38 +25,10 @@ export class CadastroBanheiroPage {
   constructor(public navCtrl: NavController, public httpClient: HttpClient, 
     public Platform: Platform) {
 
-    this.getData();
     // Ações No Menu - side bar
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
 
-  }
-
-  getData(){
-    let path = 'src/pages/cadastro-banheiro/cadastro-banheiro.json';
-    let url = 'https://jsonplaceholder.typicode.com/photos'
-
-    let data: Observable<any> = this.httpClient.get(url);
-    data.subscribe(
-      result => {
-        this.catacteristicas = result;
-        console.log(result);
-
-      }
-    )
-  }
-
-  doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      for (let i = 0; i < 30; i++) {
-        this.catacteristicas.push( this.catacteristicas.length );
-      }
-
-      console.log('Async operation has ended');
-      infiniteScroll.complete();
-    }, 500);
   }
 
   // vai usar o proprio botão de voltar do celular
@@ -71,5 +40,29 @@ export class CadastroBanheiroPage {
     this.rootPage = opcao;
   }
 
+   // lista de caracteristicas do banheiro 
+
+  caracteristicas = [
+    {
+      nome: "Feminino",
+      icone: "assets/caracteristicas/mulher.png"
+    },
+    {
+      nome: "Masculino",
+      icone: "assets/caracteristicas/masculino.png"
+    },
+    {
+      nome: "Familia",
+      icone: "assets/caracteristicas/familia.png"
+    },
+    {
+      nome: "Unissex",
+      icone: "assets/caracteristicas/iconeunissex.png"
+    },
+    {
+      nome: "PCD",
+      icone: "assets/caracteristicas/deficiente.png"
+    },
+  ];
 
 }// fim da classe
