@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
+
 
 /*
   Generated class for the BathroomsProvider provider.
@@ -11,8 +13,9 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class BathroomsProvider {
   private API_URL = 'https://mypoopy.herokuapp.com/';
+  uid:string
 
-  constructor(public http: HttpClient) {
+  constructor(public http: HttpClient, public storage: Storage) {
     console.log('Hello BathroomsProvider Provider');
   }
 
@@ -28,9 +31,11 @@ export class BathroomsProvider {
         hFe:hFe
       };
 
+      this.storage.get('uidNumber').then(done => {
+        this.uid = done
+      });
       
-      
-      this.http.post(this.API_URL + 'api/bathroom/', data, { headers: { 'Content-Type': 'application/json', 'uid': uid.toString() } })
+      this.http.post(this.API_URL + 'api/bathroom/', data, { headers: { 'Content-Type': 'application/json', 'uid': this.uid } })
         .subscribe(res => {
           resolve(res);
         }, (err) => {
