@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { IntroPage } from '../pages/intro/intro';
+
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 
@@ -23,6 +24,7 @@ export class MyApp {
   rootPage:any;
 
   
+
 
 
   constructor(
@@ -79,6 +81,10 @@ export class MyApp {
 
     });
     
+    // Ações No Menu - side bar
+    this.homePage = MapsPage;
+    this.cadastroPage = CadastroBanheiroPage;
+    
    
   }
 
@@ -94,6 +100,10 @@ export class MyApp {
       ]
     });
     alert.present();
+  }
+
+  openPage(opcao) {
+    this.rootPage = opcao;
   }
 
 }

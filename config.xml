@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.mypoopyteam.mypoopyproject" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>my-poopy</name>
+    <name>My Poopy</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
     <content original-src="index.html" src="http://192.168.1.105:8100" />
@@ -91,7 +91,6 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-device" spec="^2.0.2" />
-    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.1.4">
         <variable name="ANDROID_SUPPORT_ANNOTATIONS_VERSION" value="27.+" />
     </plugin>
@@ -108,6 +107,7 @@
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.192689498859-66libcec4t10p7m49igtn9lqg9f11tco" />
     </plugin>
     <allow-navigation href="http://192.168.15.8:8100" sessionid="93b747f7" />
+
     <allow-navigation href="http://192.168.1.105:8100" sessionid="5239053d" />
     <plugin name="cordova-plugin-googlemaps" spec="^2.4.6">
         <variable name="API_KEY_FOR_ANDROID" value="AIzaSyDUhb70pIeiSFq3kitRgFJyWxdw89BzXWY" />
@@ -115,4 +115,7 @@
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
     </plugin>
     <engine name="android" spec="7.1.1" />
+
+    <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
+
 </widget>

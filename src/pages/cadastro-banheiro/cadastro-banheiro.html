@@ -9,6 +9,13 @@
   <ion-icon name="menu" lg></ion-icon>
 </button>
 
+<!-- <nav-bar>
+  <ion-content>
+    <button (click)="goBack()"></button>
+  </ion-content>
+</nav-bar> -->
+
+
 <div #cadastro id="cadastro">
 
   <!--Formulario de Cadastro do Banheiro-->
@@ -47,18 +54,18 @@
   <ion-row>
     <ion-col col-6>
       <ion-content id="lista">
-        <ion-card *ngFor='let caracteristica of catacteristicas'>
+        <ion-card *ngFor='let caracteristica of caracteristicas'>
           <ion-item>
             <ion-avatar item-start>
-              <img [src]="caracteristica.thumbnailUrl">
+              <img [src]="caracteristica.icone">
             </ion-avatar>
-            <ion-label>{{caracteristica.title}}</ion-label>
+            <ion-label>{{caracteristica.nome}}</ion-label>
             <ion-toggle color= 'secondary' checked="false"></ion-toggle>
           </ion-item>
         </ion-card>
-    -->
-        <!-- Scroll da página conforme for adicionando mais itens 
-        <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <!-- Scroll da página conforme for adicionando mais itens -->
+        <ion-infinite-scroll>
+
           <ion-infinite-scroll-content></ion-infinite-scroll-content>
         </ion-infinite-scroll>
       </ion-content>

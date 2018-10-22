@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+
 import { IonicPage, NavController, Platform, ToastController } from 'ionic-angular';
 import { HttpClient,} from '@angular/common/http';
 import { Observable } from 'rxjs/Observable'
 import { MapsPage } from '../maps/maps';
 
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms'
+
 /**
  * Generated class for the CadastroBanheiroPage page.
  *
@@ -18,6 +20,7 @@ import { BathroomsProvider } from './../../providers/bathrooms/bathrooms'
   templateUrl: 'cadastro-banheiro.html',
 })
 export class CadastroBanheiroPage {
+
   model: Bathroom;
   public catacteristicas: any;
   
@@ -29,41 +32,52 @@ export class CadastroBanheiroPage {
   hAb: String = ""
   hFe: String = ""
 
+
   constructor(public navController: NavController, public httpClient: HttpClient, 
     public Platform: Platform,
     private bathroomProvider: BathroomsProvider,
     public storage: Storage,
     private toast: ToastController,) {
 
-    this.getData();
+    // Ações No Menu - side bar
+    this.homePage = MapsPage;
+    this.cadastroPage = CadastroBanheiroPage;
+
   }
 
-  getData(){
-    let path = 'src/pages/cadastro-banheiro/cadastro-banheiro.json';
-    let url = 'https://jsonplaceholder.typicode.com/photos'
-
-    let data: Observable<any> = this.httpClient.get(url);
-    data.subscribe(
-      result => {
-        this.catacteristicas = result;
-        console.log(result);
-
-      }
-    )
+  // vai usar o proprio botão de voltar do celular
+  goBack() {
+    this.navCtrl.pop();
   }
 
-  doInfinite(infiniteScroll) {
-    console.log('Begin async operation');
-
-    setTimeout(() => {
-      for (let i = 0; i < 30; i++) {
-        this.catacteristicas.push( this.catacteristicas.length );
-      }
-
-      console.log('Async operation has ended');
-      infiniteScroll.complete();
-    }, 500);
+  openPage(opcao) {
+    this.rootPage = opcao;
   }
+
+   // lista de caracteristicas do banheiro 
+
+  caracteristicas = [
+    {
+      nome: "Feminino",
+      icone: "assets/caracteristicas/mulher.png"
+    },
+    {
+      nome: "Masculino",
+      icone: "assets/caracteristicas/masculino.png"
+    },
+    {
+      nome: "Familia",
+      icone: "assets/caracteristicas/familia.png"
+    },
+    {
+      nome: "Unissex",
+      icone: "assets/caracteristicas/iconeunissex.png"
+    },
+    {
+      nome: "PCD",
+      icone: "assets/caracteristicas/deficiente.png"
+    },
+  ];
 
   voltar(){
     this.navController.setRoot(MapsPage);

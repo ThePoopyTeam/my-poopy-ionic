@@ -1,3 +1,4 @@
+
 import {Component, ViewChild, ElementRef} from '@angular/core'
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {Geolocation} from '@ionic-native/geolocation'
@@ -17,7 +18,7 @@ import {
   Polyline,
   PolylineOptions } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 
 @IonicPage()
@@ -28,6 +29,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 })
 export class MapsPage {
   
+
   map: GoogleMap;
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
@@ -170,4 +172,12 @@ export class MapsPage {
 }
   
   
+
+
+
+  goToOtherPage(opcao) {
+    this.navCtrl.push(opcao);
+  }
+
+}
 
