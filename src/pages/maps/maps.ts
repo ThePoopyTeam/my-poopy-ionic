@@ -18,7 +18,10 @@ import {
   PolylineOptions } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
+import { IntroPage } from '../intro/intro';
 
+declare var google;
 
 @IonicPage()
 @Component({
@@ -27,7 +30,6 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   
 })
 export class MapsPage {
-  
   map: GoogleMap;
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
@@ -124,6 +126,7 @@ export class MapsPage {
           this.teste = plyPath
           console.log('teste')
           console.log(this.teste) 
+
         }
       });
 
@@ -162,12 +165,9 @@ export class MapsPage {
       });
     })
   }
-  
   adicionaBanheiro() {
     this.navController.setRoot(CadastroBanheiroPage);
     console.log('entrou');
   };
 }
-  
-  
 

@@ -11,7 +11,6 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 
-
 @Component({
   templateUrl: 'app.html',
   selector: 'page-app'
@@ -21,9 +20,8 @@ export class MyApp {
   //bota um if aqui, se tem uid no storage vai para mapa se não para intro
 
   rootPage:any;
-
-  
-
+  homePage:any;
+  cadastroPage:any;
 
   constructor(
     public platform: Platform, 
@@ -79,6 +77,10 @@ export class MyApp {
 
     });
     
+    // Ações No Menu - side bar
+    this.homePage = MapsPage;
+    this.cadastroPage = CadastroBanheiroPage;
+    
    
   }
 
@@ -94,6 +96,10 @@ export class MyApp {
       ]
     });
     alert.present();
+  }
+
+  openPage(opcao) {
+    this.rootPage = opcao;
   }
 
 }
