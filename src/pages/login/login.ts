@@ -116,7 +116,7 @@ export class LoginPage {
       const gc = firebase.auth.GoogleAuthProvider.credential(res.idToken);
       firebase.auth().signInWithCredential(gc).then(suc => {
         this.model = new User();
-        
+        console.log(suc)
         this.model.nome = suc.displayName.toString()
         this.model.email = suc.providerData[0].email.toString()
         this.model.imagem = suc.photoURL.toString()

@@ -36,7 +36,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-
+      
+      
       androidPermissions.requestPermissions([
         androidPermissions.PERMISSION.CAMERA,
         androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
@@ -49,10 +50,11 @@ export class MyApp {
 
           if (success.hasPermission == false) {
             console.log("Ainda não tem todas as permissões");
+            this.storage.set('intro-done', false)
             this.alertaNotificacao();
           } else {
             console.log("Tem todas as permisões!");
-
+            
           }
         }
       ); 
@@ -64,16 +66,18 @@ export class MyApp {
           this.rootPage = IntroPage
         } else {
           this.rootPage = LoginPage
+
+          this.storage.get('uid').then(done => {
+            if (!done) {
+              this.rootPage = LoginPage
+            } else {
+              this.rootPage = MapsPage
+            }
+          });
         }
       });
 
-      this.storage.get('uid').then(done => {
-        if (!done) {
-          this.rootPage = LoginPage
-        } else {
-          this.rootPage = MapsPage
-        }
-      });
+      
 
     });
     

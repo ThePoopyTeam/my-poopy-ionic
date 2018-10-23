@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, Platform, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, Platform, ToastController, NavParams,  } from 'ionic-angular';
 import { HttpClient,} from '@angular/common/http';
-import { Observable } from 'rxjs/Observable'
 import { MapsPage } from '../maps/maps';
 
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms'
+
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the CadastroBanheiroPage page.
  *
@@ -36,7 +37,8 @@ export class CadastroBanheiroPage {
     public Platform: Platform,
     private bathroomProvider: BathroomsProvider,
     public storage: Storage,
-    private toast: ToastController,) {
+    private toast: ToastController,
+    public navParams: NavParams) {
 
     // Ações No Menu - side bar
     this.homePage = MapsPage;
@@ -46,7 +48,7 @@ export class CadastroBanheiroPage {
 
   // vai usar o proprio botão de voltar do celular
   goBack() {
-    this.navCtrl.pop();
+    this.navController.pop();
   }
 
   openPage(opcao) {
@@ -83,14 +85,15 @@ export class CadastroBanheiroPage {
   }
 
   createBathroom (){
+    console.log(this.navParams.data)
     this.model = new Bathroom();
-    this.model.nome = 'tt'
-    this.model.endereco = 'tt'
-    this.model.caracte = 'tt'
+    this.model.nome 
+    this.model.endereco 
+    this.model.caracte 
     this.model.lat = 22
     this.model.lon = 22
-    this.model.hAb = 'tt'
-    this.model.hFe = 'tt'
+    this.model.hAb 
+    this.model.hFe 
 
 
     //chama provider
@@ -98,7 +101,7 @@ export class CadastroBanheiroPage {
       .then((result: any) => {
         this.toast.create({ message: 'Banheiro cadastrado com sucesso. ', position: 'botton', duration: 3000 }).present();
 
-        this.storage.set('uid', true);
+        
         //Salvar o token no Ionic Storage para usar em futuras requisições.
         //Redirecionar o usuario para outra tela usando o navCtrl
         //this.navCtrl.pop();

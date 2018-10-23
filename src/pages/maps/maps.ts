@@ -1,25 +1,17 @@
-import {Component, ViewChild, ElementRef} from '@angular/core'
+import {Component} from '@angular/core'
 import {IonicPage, Platform, NavController} from 'ionic-angular'
-import {Geolocation} from '@ionic-native/geolocation'
 import {
   GoogleMaps,
   GoogleMap,
-  GoogleMapsEvent,
   GoogleMapOptions,
-  CameraPosition,
-  MarkerOptions,
   Marker,
   Environment, 
   LocationService, 
-  MyLocationOptions, 
   MyLocation,
   ILatLng,
-  Polyline,
-  PolylineOptions } from '@ionic-native/google-maps'
+  } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
-import { IntroPage } from '../intro/intro';
+
 
 declare var google;
 
