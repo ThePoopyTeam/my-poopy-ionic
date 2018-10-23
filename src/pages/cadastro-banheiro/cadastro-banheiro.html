@@ -19,7 +19,7 @@
 <div #cadastro id="cadastro">
 
   <!--Formulario de Cadastro do Banheiro-->
-  <form id="formulario" (ngSubmit)="createBathroom()">
+  <form id="formulario">
     <ion-row id="form-titulo">
       <ion-col text-center>     
         <ion-label>Cadastro de Banheiro</ion-label>
@@ -28,18 +28,18 @@
 
     <div id='form-item'>
       <ion-item >
-        <ion-label id="label" floating>Nome do Estabelecimento</ion-label>
-        <ion-input type="text" [(ngModel)]="nome"></ion-input>
+        <ion-label id="label" floating>Nome do Estabelicimento</ion-label>
+        <ion-input type="text"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label id="label" floating>Endereço do Estabelecimento</ion-label>
-        <ion-input type="text" [(ngModel)]="endereco"></ion-input>
+        <ion-input type="text"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label id="label">Horário de Abertura</ion-label>
-        <ion-input type="time" [(ngModel)]="inputValue"></ion-input>
+        <ion-input type="time"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -50,7 +50,7 @@
   </form>
 
 
-  <!-- Lista de Caracteristicas do banheiro 
+  <!-- Lista de Caracteristicas do banheiro -->
   <ion-row>
     <ion-col col-6>
       <ion-content id="lista">
@@ -63,23 +63,20 @@
             <ion-toggle color= 'secondary' checked="false"></ion-toggle>
           </ion-item>
         </ion-card>
+    
         <!-- Scroll da página conforme for adicionando mais itens -->
         <ion-infinite-scroll>
-
           <ion-infinite-scroll-content></ion-infinite-scroll-content>
         </ion-infinite-scroll>
       </ion-content>
     </ion-col>
   </ion-row>
-  -->
+     
 </div>
 
 <ion-footer>
   <ion-toolbar id="toolbar">
       <ion-buttons end>
-        <button ion-button icon-end color="secondary" (click)="voltar()">
-          Voltar
-        </button>
         <button ion-button icon-end color="secondary" (click)="onSalve()">
           Salvar
         </button>

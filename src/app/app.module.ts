@@ -19,13 +19,9 @@ import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
-import { UsersProvider } from '../providers/users/users';
-import { IonicStorageModule } from '@ionic/storage';
+import { HttpClientModule } from '@angular/common/http'
 
-import { GoogleMaps } from '@ionic-native/google-maps';
-import { BathroomsProvider } from '../providers/bathrooms/bathrooms';
+
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ",
@@ -51,8 +47,6 @@ firebase.initializeApp(firebaseConfig);
     CadastroBanheiroPageModule,
     AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
-    HttpModule,
-    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -67,10 +61,7 @@ firebase.initializeApp(firebaseConfig);
     ConnectivityProvider,
     GoogmeMapsClusterProvider,
     Facebook,
-    GooglePlus,
-    UsersProvider,
-    GoogleMaps,
-    BathroomsProvider
+    GooglePlus
   ]
 })
 export class AppModule {}
