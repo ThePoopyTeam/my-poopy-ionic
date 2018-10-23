@@ -69,8 +69,12 @@ export class LoginPage {
     this.facebook.login(['email']).then(res => {
       const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
       firebase.auth().signInWithCredential(fc).then(fs => {
-        
-        
+        this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
+        this.storage.set('uid', true);
+        this.storage.set('uidNumber', fs.uid.toString());
+        this.navCtrl.push(MapsPage);
+
+        /*
         this.model = new User();
         this.model.nome = fs.displayName.toString()
         this.model.email = fs.email.toString()
@@ -97,24 +101,34 @@ export class LoginPage {
             console.log(error.error)
           });
 
-
+          */
 
 
       }).catch(ferr => {
-        alert("FB login not success")
+        this.toast.create({ message: 'Erro ao logar. Tente novamente!!!', position: 'botton', duration: 3000 }).present();
+        console.log(ferr)
       })
     }).catch(err =>{
-      alert(JSON.stringify(err));
+      console.log(err)
     })
   }
 
   googleLogin(){
+    console.log('apertou botão google')
     this.googleplus.login({
       'webClientId': '192689498859-66libcec4t10p7m49igtn9lqg9f11tco.apps.googleusercontent.com',
       'offline' : true
     }).then(res => {
       const gc = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+      console.log('Log 1: ' + gc)
       firebase.auth().signInWithCredential(gc).then(suc => {
+        this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
+
+        this.storage.set('uid', true);
+        this.storage.set('uidNumber', suc.uid.toString());
+        this.navCtrl.push(MapsPage);
+        /*
+     
         this.model = new User();
         console.log(suc)
         this.model.nome = suc.displayName.toString()
@@ -142,12 +156,13 @@ export class LoginPage {
             console.log(error.error)
           });
 
+          */
       }).catch(ns => {
-        alert("Google login not success");
+        this.toast.create({ message: 'Erro ao logar. Tente novamente!!!', position: 'botton', duration: 3000 }).present();
         console.log(ns)
       })
       }).catch(err => {
-        alert(JSON.stringify(err));
+        console.log(err)
       })
   }
 }

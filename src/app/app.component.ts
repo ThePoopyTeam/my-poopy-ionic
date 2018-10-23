@@ -36,8 +36,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      
-      
+      //this.storage.set('uid', false)
+      //this.storage.set('intro-done', false)
       androidPermissions.requestPermissions([
         androidPermissions.PERMISSION.CAMERA,
         androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,

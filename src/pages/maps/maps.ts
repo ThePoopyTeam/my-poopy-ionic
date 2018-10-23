@@ -159,7 +159,7 @@ export class MapsPage {
   }
   adicionaBanheiro() {
     this.navController.setRoot(CadastroBanheiroPage);
-    console.log('entrou');
+    console.log('entrou adicionar botão');
   };
 }
 

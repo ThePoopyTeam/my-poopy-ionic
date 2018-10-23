@@ -5,7 +5,6 @@ import { MapsPage } from '../maps/maps';
 
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms'
 
-import { Storage } from '@ionic/storage';
 /**
  * Generated class for the CadastroBanheiroPage page.
  *
@@ -36,7 +35,6 @@ export class CadastroBanheiroPage {
   constructor(public navController: NavController, public httpClient: HttpClient, 
     public Platform: Platform,
     private bathroomProvider: BathroomsProvider,
-    public storage: Storage,
     private toast: ToastController,
     public navParams: NavParams) {
 
@@ -85,7 +83,8 @@ export class CadastroBanheiroPage {
   }
 
   createBathroom (){
-    console.log(this.navParams.data)
+    
+    /*
     this.model = new Bathroom();
     this.model.nome 
     this.model.endereco 
@@ -112,6 +111,8 @@ export class CadastroBanheiroPage {
         this.toast.create({ message: 'Erro ao cadastrar banheiro. Tente novamente!!!', position: 'botton', duration: 3000 }).present();
         console.log(error.error)
       });
+
+      */
   }
 
 }// fim da classe
