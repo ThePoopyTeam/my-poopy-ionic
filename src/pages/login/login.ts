@@ -24,6 +24,8 @@ import { Storage } from '@ionic/storage';
 export class LoginPage {
   model: User;
   uid: Boolean;
+  nome;
+  imagem;
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
@@ -72,6 +74,8 @@ export class LoginPage {
         this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
         this.storage.set('uid', true);
         this.storage.set('uidNumber', fs.uid.toString());
+        this.nome = this.storage.set('name', fs.displayName.toString());
+        this.imagem = this.storage.set('photo', fs.photoURL.toString());
         this.navCtrl.push(MapsPage);
 
         /*

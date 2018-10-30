@@ -1,7 +1,13 @@
 <ion-menu [content]="conteudo" side="left" id="menu">
     <ion-header id="menu-perfil">
         <ion-toolbar>
-            <ion-title>My Poopy</ion-title>
+            <ion-avatar item-start class="avatar">
+                <img src="{{imagem}}">
+            </ion-avatar>
+            <ion-title style="float: left; margin-top: 10px;">{{nome}}</ion-title>
+            <button ion-button clear style="float:right"> 
+                <ion-icon name="exit"></ion-icon>
+            </button>
         </ion-toolbar>
     </ion-header>
 

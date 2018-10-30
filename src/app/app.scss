@@ -11,5 +11,12 @@ page-app {
     background-color: aquamarine;
   }
 
+  .avatar {
+    border-radius: 50%;
+    overflow: hidden;
+    width: 36px;
+    height: 36px;
+    float: left;
+  }
 
 }

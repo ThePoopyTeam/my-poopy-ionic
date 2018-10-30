@@ -9,6 +9,11 @@ import {
   LocationService, 
   MyLocation,
   ILatLng,
+  LatLng,
+  GoogleMapsEvent,
+  BaseArrayClass,
+  GoogleMapsAnimation,
+  Polyline
   } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
 
@@ -26,11 +31,11 @@ export class MapsPage {
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
   dest: ILatLng;
-  teste;
+  
 
   constructor(public googlemaps: GoogleMaps, platform: Platform, public navController: NavController) {
     platform.ready().then(() => {
-      this.loadMap();
+      this.loadMap()
     });
   }
 
@@ -64,102 +69,98 @@ export class MapsPage {
         
       } 
      
-      
-
+     
       this.map = GoogleMaps.create('map_canvas', options);
+
+      ///fim load map
       
-      let marker: Marker = this.map.addMarkerSync({
-        title: 'Ipanema Sports', 
-        snippet: "Av. Cel. Marcos, 2353",        
-        icon: 'blue',
-        animation: 'DROP',
-        position: {
-          lat: -30.1316736,
-          lng: -51.2347836
-        }
-      });
-
-      this.origin = location.latLng
-      console.log('marker:')
-      console.log(marker.getPosition().lat)
-      console.log(marker.getPosition().lng)
-
-      this.dest = {
-        lat: marker.getPosition().lat,
-        lng: marker.getPosition().lng
-      }
-
-      const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
-        origin: this.origin, // origem
-        destination: this.dest, // destino
-        travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, apé
-      };
-
-      this.directionsService.route(request, function (result, status) {
-        if (status == google.maps.DirectionsStatus.OK) {
-          const plyPath = [];
-          const legs = result.routes[0].legs;
-          for (let i = 0; i < legs.length; i++) {
-            var steps = legs[i].steps;
-            
-            for (let j = 0; j < steps.length; j++) {
-              var nextSegment = steps[j].path;
-              
-              for (let k = 0; k < nextSegment.length; k++) {
-                
-                
-                plyPath.push(nextSegment[k].toJSON())
-              }
-            } 
-          }
-
-          console.log('plyPath')
-          console.log(plyPath) 
-          this.teste = plyPath
-          console.log('teste')
-          console.log(this.teste) 
-
-        }
-      });
-
-      console.log('teste fora')
-      console.log(this.teste) 
-
-      let points = [
-        {
-          lat: - 30.129030000000004,
-          lng: -51.233650000000004
-        },
-        {
-          lat: -30.129430000000003,
-          lng: -51.234100000000005,
-        },
-        { lat: -30.129700000000003, lng: -51.23436 },
-        { lat: -30.130190000000002, lng: -51.234820000000006 },
-        { lat: -30.130950000000002, lng: -51.235580000000006 },
-        { lat: -30.131320000000002, lng: -51.23603000000001 },
-        { lat: -30.131370000000004, lng: -51.235890000000005 },
-        { lat: -30.131420000000002, lng: -51.23575 },
-        { lat: -30.131500000000003, lng: -51.23556000000001 },
-        { lat: -30.131580000000003, lng: -51.235380000000006 },
-        { lat: -30.13162, lng: -51.23525000000001 },
-        { lat: -30.131670000000003, lng: -51.235110000000006 },
-        { lat: -30.131770000000003, lng: -51.23483 }
+      let markers: any[] = [
+        { lat: -30.140937, lng: -51.129785, title: "Banheiro Bloco 5 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
+        { lat: -30.141128, lng: -51.129964, title: "Banheiro Bloco 4 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
+        { lat: -30.141312, lng: -51.130147, title: "Banheiro Bloco 3 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
+        { lat: -30.141440, lng: -51.130330, title: "Banheiro corredor - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
+        { lat: -30.131731, lng: -51.235523, title: "Ipanema Sports", snippet: "Av. Cel. Marcos, 2353 - Ipanema" }
       ];
 
+      let baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
+
+      baseArray.forEach((position: any, idx: number) => {
+        console.log(position.title);
+
+        let marker: Marker = this.map.addMarkerSync({
+          position: position,
+          icon: 'red',
+          title: position.title,
+          snippet: position.snippet,
+          animation: GoogleMapsAnimation.BOUNCE,
+        })
+        marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+          
+
+          this.origin = location.latLng
+
+          this.dest = marker.getPosition()
+
+          const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
+            origin: this.origin, // origem
+            destination: this.dest, // destino
+            travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, apé
+          };
+
+          let promisePyPath = new Promise((resolve, reject) => {
+            this.directionsService.route(request, function (result, status) {
+              if (status == google.maps.DirectionsStatus.OK) {
+                const plyPath = [];
+                const legs = result.routes[0].legs;
+                for (let i = 0; i < legs.length; i++) {
+                  var steps = legs[i].steps;
+
+                  for (let j = 0; j < steps.length; j++) {
+                    var nextSegment = steps[j].path;
+
+                    for (let k = 0; k < nextSegment.length; k++) {
 
 
-      this.map.addPolyline({
-        points: points,
-        'color': '#AA00FF',
-        'width': 10,
-        'geodesic': true
-      });
+                      plyPath.push(nextSegment[k].toJSON())
+                    }
+                  }
+                }
+
+
+                resolve(plyPath)
+              }
+            })
+
+
+          })
+
+          
+          Promise.all([promisePyPath]).then(response => {
+            const plyPath: any = response[0]
+              const teste = this.map.addPolyline({
+                points: plyPath,
+                'color': 'blue',
+                'width': 5,
+                'geodesic': true
+              })
+
+              console.log(teste)
+              
+          })
+
+        })
+      })   
+
+      
+      
+
+      
     })
   }
+
+
   adicionaBanheiro() {
     this.navController.setRoot(CadastroBanheiroPage);
-    console.log('entrou adicionar botão');
   };
 }
 
