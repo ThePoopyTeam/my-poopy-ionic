@@ -22,7 +22,8 @@ export class MyApp {
   rootPage:any;
   homePage:any;
   cadastroPage:any;
-
+  nome:any;
+  imagem: any;
   constructor(
     public platform: Platform, 
     statusBar: StatusBar, 
@@ -32,12 +33,15 @@ export class MyApp {
     public storage: Storage
     ) {
     platform.ready().then(() => {
+      this.storage.set('intro-done', false)
+      this.storage.set('uid', false)
+
+
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      //this.storage.set('uid', false)
-      //this.storage.set('intro-done', false)
+      
       androidPermissions.requestPermissions([
         androidPermissions.PERMISSION.CAMERA,
         androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION,
@@ -51,9 +55,10 @@ export class MyApp {
           if (success.hasPermission == false) {
             console.log("Ainda não tem todas as permissões");
             this.storage.set('intro-done', false)
+            this.storage.set('uid', false)
             this.alertaNotificacao();
           } else {
-            console.log("Tem todas as permisões!");
+            console.log("Tem todas as permissões!");
             
           }
         }
@@ -85,6 +90,14 @@ export class MyApp {
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
     
+    this.storage.get('name').then((done) => {
+      this.nome = done
+      console.log("nome: " + this.nome);
+    })
+    this.storage.get('photo').then((done) => {
+      this.imagem = done
+      console.log("imagem: " + this.imagem);
+    })
    
   }
 
@@ -105,6 +118,8 @@ export class MyApp {
   openPage(opcao) {
     this.rootPage = opcao;
   }
+
+ 
 
 }
 
