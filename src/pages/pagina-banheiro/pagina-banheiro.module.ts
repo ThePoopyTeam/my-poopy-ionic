@@ -7,7 +7,7 @@ import { PaginaBanheiroPage } from './pagina-banheiro';
     PaginaBanheiroPage,
   ],
   imports: [
-    IonicPageModule.forChild(PaginaBanheiroPage),
+    IonicPageModule.forChild(PaginaBanheiroPage)
   ],
 })
 export class PaginaBanheiroPageModule {}

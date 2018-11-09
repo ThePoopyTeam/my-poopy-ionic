@@ -10,6 +10,11 @@
     "build": "ionic-app-scripts build",
     "lint": "ionic-app-scripts lint"
   },
+  
+  "config": {
+    "ionic_copy": "./config/copy.config.js",
+    "ionic_sass": "./config/sass.config.js"
+  },
   "dependencies": {
     "@angular/animations": "5.2.11",
     "@angular/common": "5.2.11",
@@ -20,6 +25,9 @@
     "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
+    "@fortawesome/angular-fontawesome": "^0.3.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.8",
+    "@fortawesome/free-solid-svg-icons": "^5.5.0",
     "@ionic-native/android-permissions": "^4.12.2",
     "@ionic-native/core": "~4.12.0",
     "@ionic-native/facebook": "^4.14.0",
@@ -47,6 +55,7 @@
     "cordova-sqlite-storage": "^2.5.0",
     "emulator": "0.1.0",
     "firebase": "^5.5.1",
+    "font-awesome": "^4.7.0",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "node-js-marker-clusterer": "^1.0.0",

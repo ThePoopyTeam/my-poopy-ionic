@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+
 /**
  * Generated class for the PaginaBanheiroPage page.
  *
@@ -14,6 +16,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'pagina-banheiro.html',
 })
 export class PaginaBanheiroPage {
+
+  // faCoffee = faCoffee;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

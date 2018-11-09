@@ -27,6 +27,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { BathroomsProvider } from '../providers/bathrooms/bathrooms';
+// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ",
@@ -54,6 +55,7 @@ firebase.initializeApp(firebaseConfig);
     AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
     HttpModule,
+    // FontAwesomeModule,
     IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
