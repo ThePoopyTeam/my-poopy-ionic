@@ -10,6 +10,7 @@ import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banhei
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
+import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
 
 @Component({
   templateUrl: 'app.html',
@@ -22,6 +23,7 @@ export class MyApp {
   rootPage:any;
   homePage:any;
   cadastroPage:any;
+  paginaBanheiroPage:any;
   nome:any;
   imagem: any;
   constructor(
@@ -89,6 +91,7 @@ export class MyApp {
     // Ações No Menu - side bar
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
+    this.paginaBanheiroPage = PaginaBanheiroPage;
     
     this.storage.get('name').then((done) => {
       this.nome = done

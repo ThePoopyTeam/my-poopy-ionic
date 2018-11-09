@@ -83,7 +83,7 @@ export class IntroPage {
   goToTabsPage() {
     //push another page onto the history stack
     //causing the nav controller to animate the new page in
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(MapsPage);
     this.storage.set('intro-done', true);
   }
 
