@@ -1,27 +1,41 @@
-// @import "../assets/scss/fontawesome.scss";
-// @import ".../assets/scss/solid.scss";
-// @import "../assets/scss/brands.scss";
-
 page-pagina-banheiro {
 
-    h1 {
+    .avatar-title {
         font-size: 2rem;
         text-align: center;
+        color: #E73D18;
+        margin-top: 2.8rem;
     }
 
-    h3 {
-        font-size: 1.25rem;
+    .avatar-image {
+        max-height: 20%;
+        max-width: 30%;
+    }
+
+    .avatar-description {
+        font-size: 1.65rem;
         text-align: center;
+        color: #2A2B2B;
     }
 
-    // .ion-md-checkbox-outline:before {
-    //     font-size: 21px;
-    // }
+    .info {
+        margin-top: 20px;
+
+    }
+
 
     .icon{
         font-size: 25px;
         margin-right: 10px;
         margin-left: 10px;
+        color: #1F8AFF;
     }
 
+    .rater {
+
+        font-size: 30px;
+        margin-right: 10px;
+        margin-left: 10px;
+        color: #E73D18;
+    }
 }
