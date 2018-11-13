@@ -84,7 +84,8 @@ export class MyApp {
       //   }
       // });
 
-      this.rootPage = this.paginaBanheiroPage;
+      this.homePage = MapsPage;
+      this.rootPage = this.homePage;
 
     });
     
