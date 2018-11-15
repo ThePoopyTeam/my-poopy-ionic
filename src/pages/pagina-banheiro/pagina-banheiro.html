@@ -5,6 +5,10 @@
   Ionic pages and navigation.
 -->
 
+<button id="botaomenu" color="dark" clear ion-button menuToggle>
+  <ion-icon name="menu"></ion-icon>
+</button>
+
 <ion-content padding style=background-color:#FAFEFF>
 
     <ion-card>
@@ -48,3 +52,13 @@
     </ion-card>
     
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar id="toolbar">
+    <ion-buttons end>
+      <button ion-button icon-start color="secondary" (click)="voltar()">
+        Voltar
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
