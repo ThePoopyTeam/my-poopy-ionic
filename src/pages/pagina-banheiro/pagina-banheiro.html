@@ -2,7 +2,7 @@
   <ion-icon name="menu"></ion-icon>
 </button>
 
-<ion-content>
+<ion-content scroll>
 
   <ion-fab top right>
     <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>
@@ -36,19 +36,21 @@
   </div>  
    
   <!-- Lista de Caracteristicas do banheiro -->
-  <p>Caracteristicas</p>
-  <ion-list id="lista" padding>
-    <ion-item *ngFor='let caracteristica of caracteristicas'>
-      <ion-avatar item-start>
-        <img [src]="caracteristica.icone">
-      </ion-avatar>
-      <ion-label>{{caracteristica.nome}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <div #cadastro id="cadastro" scrollY="true" scrollX="true" style="overflow:auto;"> 
+    <p>Caracteristicas</p>
+    <ion-list  id="lista">
+      <ion-item *ngFor='let caracteristica of caracteristicas'>
+        <ion-avatar item-start>
+          <img [src]="caracteristica.icone">
+        </ion-avatar>
+        <ion-label>{{caracteristica.nome}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
 
 </ion-content>
 
-<ion-tabs color=brancopaleta>
+<ion-tabs padding color=brancopaleta >
   <ion-tab tabIcon="water" tabTitle="Editar" [root]="tab1"></ion-tab>
   <ion-tab tabIcon="leaf" tabTitle="Reportar" [root]="tab2"></ion-tab>
   <ion-tab tabIcon="flame" tabTitle="Avaliar" [root]="tab3"></ion-tab>
