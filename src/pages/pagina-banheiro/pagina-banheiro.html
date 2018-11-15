@@ -1,64 +1,57 @@
-<!--
-  Generated template for the PaginaBanheiroPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-
 <button id="botaomenu" color="dark" clear ion-button menuToggle>
   <ion-icon name="menu"></ion-icon>
 </button>
 
-<ion-content padding style=background-color:#FAFEFF>
+<ion-content>
 
-    <ion-card>
+  <ion-fab top right>
+    <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>
+    <ion-fab-list>
+      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-whatsapp"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
-      <img class="avatar" src="/assets/imgs/icone-perfil-banheiro.png"/>
+  <img class="avatar" src="/assets/imgs/icone-perfil-banheiro.png"/>
+
+  <ion-item id="banheiro" text-center> 
+    <h2>Marty McFly</h2>
+    <p>November 5, 1955</p>
+  </ion-item>
+
+  <div>
+    <ion-item>
+      <ion-icon name="happy" item-start></ion-icon>
+          Nota
+      <ion-badge item-end color=laranjapaleta>260k</ion-badge>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name="navigate" item-start></ion-icon>
+          Visitas
+      <ion-badge item-end color=laranjapaleta>260k</ion-badge>
+    </ion-item>
   
-      <ion-card-content>
-        <ion-card-title class="avatar-title">
-          Nome do Estabelimento
-        </ion-card-title>
-        <p class="avatar-description">
-          Endereço Aqui
-        </p>
-      </ion-card-content>
+  </div>  
+   
+  <!-- Lista de Caracteristicas do banheiro -->
+  <p>Caracteristicas</p>
+  <ion-list id="lista" padding>
+    <ion-item *ngFor='let caracteristica of caracteristicas'>
+      <ion-avatar item-start>
+        <img [src]="caracteristica.icone">
+      </ion-avatar>
+      <ion-label>{{caracteristica.nome}}</ion-label>
+    </ion-item>
+  </ion-list>
 
-      <ion-item>
-        <ion-grid>
-            <ion-row>
-              <ion-col col-md-12 text-center>
-                <ion-icon name='checkbox-outline' class="icon"></ion-icon>
-                <ion-icon name='megaphone' class="icon"></ion-icon>
-                <ion-icon name='create'  class="icon"></ion-icon>
-                <ion-icon name='logo-whatsapp' class="icon"></ion-icon>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-      </ion-item>
-  
-      <ion-item>
-          <ion-icon name="happy" item-start></ion-icon>
-              Nota
-        <ion-badge item-end>260k</ion-badge>
-      </ion-item>
-
-      <ion-item>
-          <ion-icon name="navigate" item-start></ion-icon>
-              Visitas
-        <ion-badge item-end>260k</ion-badge>
-      </ion-item>
-
-    </ion-card>
-    
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar id="toolbar">
-    <ion-buttons end>
-      <button ion-button icon-start color="secondary" (click)="voltar()">
-        Voltar
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>
+<ion-tabs color=brancopaleta>
+  <ion-tab tabIcon="water" tabTitle="Editar" [root]="tab1"></ion-tab>
+  <ion-tab tabIcon="leaf" tabTitle="Reportar" [root]="tab2"></ion-tab>
+  <ion-tab tabIcon="flame" tabTitle="Avaliar" [root]="tab3"></ion-tab>
+</ion-tabs>
+
+

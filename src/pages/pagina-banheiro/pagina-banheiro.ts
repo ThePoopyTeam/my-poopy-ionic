@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-// import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
-/**
- * Generated class for the PaginaBanheiroPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { SocialSharing } from '@ionic-native/social-sharing'
 
 @IonicPage()
 @Component({
@@ -17,13 +9,82 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PaginaBanheiroPage {
 
-  // faCoffee = faCoffee;
+  //dados das caracteristicas apenas exemplos
+  public catacteristicas: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //compartilhar 
+  messager:string = "Ficou apertado na rua? Sabia que pode ter uma banheiro perto de você!";
+  image:string = "/assets/imgs/icone-perfil-banheiro.png";
+  url:string = "google.com.br";
+  number:string = null;
+
+  //tabs
+  editarTab: any;
+  reportarTab: any;
+  avaliarTab: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    private socialSharing: SocialSharing) {
+
+      this.editarTab =null; 
+      this.reportarTab = null;
+      this.avaliarTab = null;
+      this.shareViaWhatsApp()
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PaginaBanheiroPage');
   }
+
+  shareViaWhatsApp() {
+
+    this.socialSharing.shareViaWhatsApp(this.messager, 
+      this.image, this.url).then(()=> {
+      console.log('Message sent!')
+    }).catch(()=> {
+      console.log('error')
+    });
+
+  }
+
+  //especifico contato
+
+  shareViaWhatsAppToReceiver(){
+      this.socialSharing.shareViaWhatsAppToReceiver(this.number, 
+        this.messager, this.image, this.url).then(()=> {
+        console.log('Message sent!')
+      }).catch(()=> {
+        console.log('error')
+      });
+  }
+
+
+
+
+  // lista de caracteristicas do banheiro 
+
+  caracteristicas = [
+    {
+      nome: "Feminino",
+      icone: "assets/caracteristicas/mulher.png"
+    },
+    {
+      nome: "Masculino",
+      icone: "assets/caracteristicas/masculino.png"
+    },
+    {
+      nome: "Familia",
+      icone: "assets/caracteristicas/familia.png"
+    },
+    {
+      nome: "Unissex",
+      icone: "assets/caracteristicas/iconeunissex.png"
+    },
+    {
+      nome: "PCD",
+      icone: "assets/caracteristicas/deficiente.png"
+    },
+  ];
 
 }
