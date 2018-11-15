@@ -1,54 +1,24 @@
 page-pagina-banheiro {
 
     #botaomenu{
+        top: 15px;
+        padding-left: 10px;
         position: absolute;
         z-index: 2;
+        font-size: 20px;
     }
-
-    .card{
-        margin-top: 25px;
-        // margin-left: 35px;
-        // margin-right: 50px;
-        margin-bottom: 25px;
-    }
-
-    .avatar-title {
-        font-size: 2rem;
-        text-align: center;
-        color: #E73D18;
-        margin-top: 2.8rem;
-    }
-
-    .avatar-image {
-        max-height: 20%;
-        max-width: 30%;
-    }
-
-    .avatar-description {
-        font-size: 1.65rem;
-        text-align: center;
-        color: #2A2B2B;
-    }
-
-    .info {
-        margin-top: 20px;
-
-    }
-
 
     .icon{
         font-size: 25px;
         margin-right: 10px;
         margin-left: 10px;
-        color: #1F8AFF;
+        color: #2A2B2B;
     }
 
-    .rater {
-
-        font-size: 30px;
-        margin-right: 10px;
-        margin-left: 10px;
-        color: #E73D18;
+    ion-item {
+        .icon {
+            color: #12CF9B
+        }
     }
 
     img.avatar {
@@ -58,4 +28,26 @@ page-pagina-banheiro {
         max-width: 40%;
         max-height: 30%;
     }
+
+    .tabbar {
+        padding-top: 2;
+        left:0;
+        bottom:0;
+        position: absolute;
+        z-index:10;
+        display: flex;
+        width: 100%;
+        opacity: 100;
+    }
+
+    #lista {
+        z-index: 10;
+    }
+
+    p{
+        margin-left: 20px;
+        font-size: 15px;
+        font-family: unset;
+    }
+
 }

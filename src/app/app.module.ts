@@ -27,6 +27,7 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { BathroomsProvider } from '../providers/bathrooms/bathrooms';
+import { SocialSharing } from '@ionic-native/social-sharing';
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const firebaseConfig = {
@@ -74,7 +75,8 @@ firebase.initializeApp(firebaseConfig);
     GooglePlus,
     UsersProvider,
     GoogleMaps,
-    BathroomsProvider
+    BathroomsProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

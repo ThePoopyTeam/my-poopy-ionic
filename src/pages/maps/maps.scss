@@ -3,10 +3,13 @@ page-maps {
         height: 100%;
         z-index: 1;
     }
+    
     #botaomenu{
-        font-size: 20px;
+        top: 15px;
+        padding-left: 10px;
         position: absolute;
         z-index: 2;
+        font-size: 20px;
     }
 
     #quicklymenu {
