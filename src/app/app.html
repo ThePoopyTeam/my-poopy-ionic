@@ -9,13 +9,14 @@
                 <ion-icon name="exit"></ion-icon>
             </button>
         </ion-toolbar>
+        
     </ion-header>
 
     <ion-content id="menu-item">
         <ion-list id="menu-item">
             <button ion-item (click)="openPage(homePage)" menuClose> Inicio </button>
             <button ion-item (click)="openPage(cadastroPage)" menuClose> Cadastro </button>
-            <button ion-item> Avaliar </button>
+            <button ion-item (click)="openPage(paginaBanheiroPage)" menuClose> Página Banheiro </button>
             <button ion-item> Reportar </button>
             <button ion-item> Ranking </button>
         </ion-list>

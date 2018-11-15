@@ -10,6 +10,7 @@ import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banhei
 import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
+import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
 
 @Component({
   templateUrl: 'app.html',
@@ -22,6 +23,7 @@ export class MyApp {
   rootPage:any;
   homePage:any;
   cadastroPage:any;
+  paginaBanheiroPage:any;
   nome:any;
   imagem: any;
   constructor(
@@ -65,30 +67,32 @@ export class MyApp {
       ); 
       
       
-      this.storage.get('intro-done').then(done => {
-        if (!done) {
+      // this.storage.get('intro-done').then(done => {
+      //   if (!done) {
 
-          this.rootPage = IntroPage
-        } else {
-          this.rootPage = LoginPage
+      //     this.rootPage = IntroPage
+      //   } else {
+      //     this.rootPage = LoginPage
 
-          this.storage.get('uid').then(done => {
-            if (!done) {
-              this.rootPage = LoginPage
-            } else {
-              this.rootPage = MapsPage
-            }
-          });
-        }
-      });
+      //     this.storage.get('uid').then(done => {
+      //       if (!done) {
+      //         this.rootPage = LoginPage
+      //       } else {
+      //         this.rootPage = MapsPage
+      //       }
+      //     });
+      //   }
+      // });
 
-      
+      this.homePage = MapsPage;
+      this.rootPage = this.homePage;
 
     });
     
     // Ações No Menu - side bar
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
+    this.paginaBanheiroPage = PaginaBanheiroPage;
     
     this.storage.get('name').then((done) => {
       this.nome = done
@@ -119,6 +123,7 @@ export class MyApp {
     this.rootPage = opcao;
   }
 
+  
  
 
 }
