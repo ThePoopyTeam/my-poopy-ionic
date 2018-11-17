@@ -49,9 +49,7 @@ export class MapsPage {
   
 
     LocationService.getMyLocation().then((location: MyLocation) => {
-      console.log(location);
-      
-      let options: GoogleMapOptions = {
+      const options: GoogleMapOptions = {
         camera: {
           target: location.latLng,
           zoom:16
@@ -66,8 +64,7 @@ export class MapsPage {
           rotate: true,
           zoom: true
         },
-        
-      } 
+      };
      
      
       this.map = GoogleMaps.create('map_canvas', options);
@@ -82,24 +79,20 @@ export class MapsPage {
         { lat: -30.131731, lng: -51.235523, title: "Ipanema Sports", snippet: "Av. Cel. Marcos, 2353 - Ipanema" }
       ];
 
-      let baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
+      const baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
 
       baseArray.forEach((position: any, idx: number) => {
-        console.log(position.title);
-
-        let marker: Marker = this.map.addMarkerSync({
+        const marker: Marker = this.map.addMarkerSync({
           position: position,
           icon: 'red',
           title: position.title,
           snippet: position.snippet,
           animation: GoogleMapsAnimation.BOUNCE,
-        })
+        });
+
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
-          
-
-          this.origin = location.latLng
-
-          this.dest = marker.getPosition()
+          this.origin = location.latLng;
+          this.dest = marker.getPosition();
 
           const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
             origin: this.origin, // origem
@@ -107,54 +100,29 @@ export class MapsPage {
             travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, apé
           };
 
-          let promisePyPath = new Promise((resolve, reject) => {
-            this.directionsService.route(request, function (result, status) {
-              if (status == google.maps.DirectionsStatus.OK) {
-                const plyPath = [];
-                const legs = result.routes[0].legs;
-                for (let i = 0; i < legs.length; i++) {
-                  var steps = legs[i].steps;
-
-                  for (let j = 0; j < steps.length; j++) {
-                    var nextSegment = steps[j].path;
-
+          this.directionsService.route(request, (result, status) => {
+            if (status == google.maps.DirectionsStatus.OK) {
+              const plyPath = [];
+              const legs: any[] = result.routes[0].legs;
+              legs.forEach(leg => {
+                leg.steps.forEach(step => {
+                  const nextSegment = step.path;
                     for (let k = 0; k < nextSegment.length; k++) {
-
-
                       plyPath.push(nextSegment[k].toJSON())
                     }
-                  }
-                }
-
-
-                resolve(plyPath)
-              }
-            })
-
-
-          })
-
-          
-          Promise.all([promisePyPath]).then(response => {
-            const plyPath: any = response[0]
-              const teste = this.map.addPolyline({
+                });
+              });
+              this.map.addPolyline({
                 points: plyPath,
                 'color': 'blue',
                 'width': 5,
                 'geodesic': true
-              })
+              });
+            }
 
-              console.log(teste)
-              
-          })
-
-        })
-      })   
-
-      
-      
-
-      
+          });
+        });
+      }) 
     })
   }
 
