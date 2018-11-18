@@ -7,9 +7,9 @@
   <ion-fab top right>
     <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>
     <ion-fab-list>
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-whatsapp"></ion-icon></button>
+      <!-- <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button> -->
+      <button ion-fab><ion-icon name="logo-whatsapp" (click)="shareViaWhatsApp()"></ion-icon></button>
     </ion-fab-list>
   </ion-fab>
 
@@ -48,10 +48,5 @@
 
 </ion-content>
 
-<ion-tabs color=brancopaleta>
-  <ion-tab tabIcon="water" tabTitle="Editar" [root]="tab1"></ion-tab>
-  <ion-tab tabIcon="leaf" tabTitle="Reportar" [root]="tab2"></ion-tab>
-  <ion-tab tabIcon="flame" tabTitle="Avaliar" [root]="tab3"></ion-tab>
-</ion-tabs>
 
 
