@@ -26,9 +26,6 @@ export class PaginaBanheiroPage {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private socialSharing: SocialSharing) {
 
-      this.editarTab =null; 
-      this.reportarTab = null;
-      this.avaliarTab = null;
       this.shareViaWhatsApp()
 
   }
