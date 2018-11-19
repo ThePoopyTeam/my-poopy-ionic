@@ -197,11 +197,14 @@ export class LoginPage {
           this.toast.create({
             duration: 3000, position: 'botton', message: 'Usuário logado'
           })
-            return usuario.updateProfile ({
-              displayName: res.displayName,
-              photoURL: res.imageURL
-              
-            })
+          this.navCtrl.push(MapsPage)
+
+          return usuario.updateProfile ({
+            displayName: res.displayName,
+            photoURL: res.imageURL
+            
+          })
+
         }).catch((error) => {
           this.toast.create({
             duration: 3000, position: 'botton', message: 'Login não realizado'
