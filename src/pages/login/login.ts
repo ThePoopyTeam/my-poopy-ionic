@@ -2,12 +2,17 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController  } from 'ionic-angular';
 import { MapsPage } from '../maps/maps';
 import { Facebook } from '@ionic-native/facebook';
-import firebase from 'firebase';
-import { GooglePlus } from '@ionic-native/google-plus';
 
 import { UsersProvider } from './../../providers/users/users';
 
 import { Storage } from '@ionic/storage';
+
+//Login Google
+import * as firebase from 'firebase/app';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { GooglePlus } from '@ionic-native/google-plus';
+import { Platform } from 'ionic-angular'
 
 /**
  * Generated class for the LoginPage page.
@@ -26,14 +31,20 @@ export class LoginPage {
   uid: Boolean;
   nome;
   imagem;
+
+  user: Observable<firebase.User>;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams, 
     public facebook: Facebook, 
-    public googleplus: GooglePlus, 
     private userProvider: UsersProvider, 
     private toast: ToastController,
-    public storage: Storage) {
+    public storage: Storage,
+    //login google
+    private afAuth: AngularFireAuth,
+    public googleplus: GooglePlus, 
+    private platform: Platform) {
     
     this.storage.get('uid').then(done => {
       if (!done) {
@@ -44,6 +55,10 @@ export class LoginPage {
         this.uid = false
       }
     });
+
+
+    //login com o google
+    this.user = this.afAuth.authState;
 
   }
   
@@ -115,6 +130,28 @@ export class LoginPage {
     }).catch(err =>{
       console.log(err)
     })
+  }
+
+  googleLogin2() {
+    if(this.platform.is('cordova')) {
+      this.nativeGoogleLogin();
+    }else {
+      this.webGoogleLogin();
+    }
+  }
+
+  async nativeGoogleLogin(): Promise<void> {
+    try{
+      const gplusUser = await this.gplus.login({
+        'webClientId': '192689498859-66libcec4t10p7m49igtn9lqg9f11tco.apps.googleusercontent.com',
+        'offline': true,
+        'scopes': 'profile email'
+      })
+
+      return await this.afAuth.auth.signInWithCredential(
+        firebase.auth.GoogleAuthProvider.credential()
+      )
+    }
   }
 
   googleLogin(){

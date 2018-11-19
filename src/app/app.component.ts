@@ -24,6 +24,8 @@ export class MyApp {
   homePage:any;
   cadastroPage:any;
   paginaBanheiroPage:any;
+  loginPage:any;
+
   nome:any;
   imagem: any;
   constructor(
@@ -84,7 +86,7 @@ export class MyApp {
       //   }
       // });
 
-      this.homePage = PaginaBanheiroPage;
+      this.homePage = LoginPage;
       this.rootPage = this.homePage;
 
     });

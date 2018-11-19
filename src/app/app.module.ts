@@ -10,6 +10,7 @@ import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -53,11 +54,13 @@ firebase.initializeApp(firebaseConfig);
     MapsPageModule,
     CadastroBanheiroPageModule,
     PaginaBanheiroPageModule,
-    AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
     HttpModule,
     // FontAwesomeModule,
     IonicStorageModule.forRoot(),
+    //login com o google
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
