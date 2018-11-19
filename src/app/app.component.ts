@@ -32,8 +32,7 @@ export class MyApp {
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
-    public storage: Storage
-    ) {
+    private storage: Storage) {
     platform.ready().then(() => {
       this.storage.set('intro-done', false)
       this.storage.set('uid', false)
@@ -67,26 +66,21 @@ export class MyApp {
       ); 
       
       
-      // this.storage.get('intro-done').then(done => {
-      //   if (!done) {
-
-      //     this.rootPage = IntroPage
-      //   } else {
-      //     this.rootPage = LoginPage
-
-      //     this.storage.get('uid').then(done => {
-      //       if (!done) {
-      //         this.rootPage = LoginPage
-      //       } else {
-      //         this.rootPage = MapsPage
-      //       }
-      //     });
-      //   }
-      // });
-
-      this.homePage = MapsPage;
-      this.rootPage = this.homePage;
-
+       this.storage.get('intro-done').then(done => {
+         if (!done) {
+           this.rootPage = IntroPage
+         } else {
+           console.log('Login')
+           this.rootPage = LoginPage
+           this.storage.get('uid').then(done => {
+             if (!done) {
+               this.rootPage = LoginPage
+             } else {
+               this.rootPage = MapsPage
+             }
+           });
+         }
+      });
     });
     
     // Ações No Menu - side bar

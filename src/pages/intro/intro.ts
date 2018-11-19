@@ -48,7 +48,7 @@ export class IntroPage {
     
     this.storage.get('intro-done').then(done => {
       if (!done) {
-        
+        this.navCtrl.setRoot(LoginPage);
         this.firstaccess = true
       } else {
         this.navCtrl.setRoot(LoginPage);
@@ -58,8 +58,7 @@ export class IntroPage {
 
     this.storage.get('uid').then(done => {
       if (!done) {
-
-        
+        this.navCtrl.setRoot(LoginPage);
       } else {
         this.navCtrl.setRoot(MapsPage);
          

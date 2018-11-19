@@ -1,3 +1,4 @@
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { CadastroBanheiroPage } from './cadastro-banheiro';
@@ -8,7 +9,10 @@ import { CadastroBanheiroPage } from './cadastro-banheiro';
     CadastroBanheiroPage,
   ],
   imports: [
-    IonicPageModule.forChild(CadastroBanheiroPage),
+    IonicPageModule.forChild(CadastroBanheiroPage)
   ],
+  providers: [ 
+    NativeGeocoder
+  ]
 })
 export class CadastroBanheiroPageModule {}
