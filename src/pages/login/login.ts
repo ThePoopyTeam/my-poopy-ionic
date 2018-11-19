@@ -37,14 +37,15 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public facebook: Facebook,
     private userProvider: UsersProvider,
     private toast: ToastController,
     public storage: Storage,
     //login google
     private afAuth: AngularFireAuth,
     private gplus: GooglePlus,
-    private platform: Platform) {
+    private platform: Platform,
+    //Facebook
+    public facebook: Facebook,) {
 
     this.storage.get('uid').then(done => {
       if (!done) {
@@ -181,6 +182,52 @@ export class LoginPage {
   }
 
 
+  /*
+  * Tutorial de como pegar a image e o email
+  */
+
+  signWithGoole() {
+    return this.gplus.login({
+        'webClientId': '192689498859-66libcec4t10p7m49igtn9lqg9f11tco.apps.googleusercontent.com',
+        'offline': true,
+      }).then(res =>{
+        //passando o token para o firebase
+        return this.afAuth.auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+        .then((usuario : firebase.User) => {
+          this.toast.create({
+            duration: 3000, position: 'botton', message: 'Usuário logado'
+          })
+            return usuario.updateProfile ({
+              displayName: res.displayName,
+              photoURL: res.imageURL
+              
+            })
+        }).catch((error) => {
+          this.toast.create({
+            duration: 3000, position: 'botton', message: 'Login não realizado'
+          });
+        });
+      });
+  }
+
+  signOutFirebase(){
+    if (this.afAuth.auth.currentUser.providerData.length) {
+      for(var i=0; i < this.afAuth.auth.currentUser.providerData.length; i++) {
+        var provider = this.afAuth.auth.currentUser.providerData[i];
+
+        if(provider.providerId == firebase.auth.GoogleAuthProvider.PROVIDER_ID) {
+          return this.gplus.logout()
+          .then(() => {
+            return this.signOutFirebase();
+          })
+        }
+      }
+    }
+
+    return this.signOutFirebase();
+  }
+
+
   // googleLogin(){
   //   console.log('apertou botão google')
   //   this.googleplus.login({
@@ -232,7 +279,7 @@ export class LoginPage {
   //   }).catch(err => {
   //     console.log(err)
   //   })
-  // }
+  //}
 }
 
 export class User {

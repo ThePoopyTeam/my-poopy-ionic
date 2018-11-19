@@ -24,14 +24,15 @@ export class UsersProvider {
         imagem: imagem,
         experiencia:experiencia
       };
-
-           
-
       
+      console.log('Dados do usuário logado .... abaixo')
       console.log(data)
       
-      this.http.post(this.API_URL + 'api/user/', data, { headers: { 'Content-Type': 'application/json', 'uid': uid.toString() }})
-        .subscribe(res => {
+      this.http.post(this.API_URL + 'api/user/', data, { 
+        headers: { 
+          'Content-Type': 'application/json', 'uid': uid.toString() 
+        }
+      }).subscribe(res => {
           resolve(res);
         }, (err) => {
           reject(err);
