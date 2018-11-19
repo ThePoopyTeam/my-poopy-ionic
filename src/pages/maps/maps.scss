@@ -3,18 +3,29 @@ page-maps {
         height: 100%;
         z-index: 1;
     }
+    
     #botaomenu{
+        top: 15px;
+        padding-left: 10px;
         position: absolute;
         z-index: 2;
+        font-size: 20px;
     }
 
     #quicklymenu {
         position: absolute;
         z-index: 4;
     }
+
+    .icon {
+        font-size: 18px;
+        color:#2A2B2B;
+    }
+
     .fab {
         contain: initial;
-        box-shadow: 1px 1px 1px 1px #12CF9B;
+        color: #FAFEFF;
+        // box-shadow: 1px 1px 1px 1px #12CF9B;
         
       }
   
@@ -34,7 +45,7 @@ page-maps {
                 padding-bottom: 5px;
                 border-radius: 3px;
                 color: #FAFEFF;
-                box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+                // box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
               }
           }
       }

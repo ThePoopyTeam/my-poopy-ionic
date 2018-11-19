@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { IntroPage } from './intro';
 
+
 @NgModule({
   declarations: [
     IntroPage,
@@ -9,5 +10,8 @@ import { IntroPage } from './intro';
   imports: [
     IonicPageModule.forChild(IntroPage),
   ],
+  providers: [
+    
+  ]
 })
 export class IntroPageModule {}

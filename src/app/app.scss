@@ -1,15 +1,37 @@
+$fa-font-path: "../assets/fonts" !default;
+@import "font-awesome"; 
+i[class^="fa-"], ion-icon[class^="fa-"] {    
+   font-family: "FontAwesome" !important;
+}
+
+
 page-app {
+
   #menu-perfil{
-    padding-botton: 100%
+    padding-botton: 100%;
   }
-
-  #menu-item {
-    background-color: #FAFEFF;
-  }
-
-  #menu-footer{
-    background-color: aquamarine;
-  }
-
 
 }
+
+
+// @import "./assets/scss/fontawesome.scss";
+// @import "./assets/scss/solid.scss";
+// @import "./assets/scss/brands.scss";
+
+// .user {
+//   @extend %fa-icon;
+//   @extend .fas;
+
+//   &:before {
+//     content: fa-content($fa-var-user);
+//   }
+// }
+
+// .twitter {
+//   @extend %fa-icon;
+//   @extend .fab;
+
+//   &:before {
+//     content: fa-content($fa-var-twitter);
+//   }
+// }
