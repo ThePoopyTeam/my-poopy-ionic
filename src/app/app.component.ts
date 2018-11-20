@@ -11,6 +11,7 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
+import { PaginaUsuarioPage } from '../pages/pagina-usuario/pagina-usuario';
 
 @Component({
   templateUrl: 'app.html',
@@ -24,6 +25,7 @@ export class MyApp {
   homePage:any;
   cadastroPage:any;
   paginaBanheiroPage:any;
+  paginaUsuarioPage:any;
   nome:any;
   imagem: any;
   constructor(
@@ -93,6 +95,7 @@ export class MyApp {
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
     this.paginaBanheiroPage = PaginaBanheiroPage;
+    this.paginaUsuarioPage = PaginaUsuarioPage;
     
     this.storage.get('name').then((done) => {
       this.nome = done
@@ -123,7 +126,10 @@ export class MyApp {
     this.rootPage = opcao;
   }
 
-  
+  logoff(){
+    
+    this.rootPage = LoginPage;
+  }  
  
 
 }
