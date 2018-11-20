@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
 import { PaginaUsuarioPage } from '../pages/pagina-usuario/pagina-usuario';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html',
@@ -26,6 +27,7 @@ export class MyApp {
   cadastroPage:any;
   paginaBanheiroPage:any;
   paginaUsuarioPage:any;
+  loginPage:any;
   nome:any;
   imagem: any;
   constructor(
@@ -34,7 +36,9 @@ export class MyApp {
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
-    public storage: Storage
+    public storage: Storage,
+    //login google
+    private afAuth: AngularFireAuth,
     ) {
     platform.ready().then(() => {
       this.storage.set('intro-done', false)
@@ -86,8 +90,9 @@ export class MyApp {
       //   }
       // });
 
-      this.homePage = MapsPage;
+      this.homePage = LoginPage;
       this.rootPage = this.homePage;
+
 
     });
     
@@ -125,12 +130,11 @@ export class MyApp {
   openPage(opcao) {
     this.rootPage = opcao;
   }
-
+  
   logoff(){
     
     this.rootPage = LoginPage;
   }  
  
-
 }
 
