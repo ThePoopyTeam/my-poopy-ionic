@@ -13,9 +13,12 @@ import {
   LatLng,
   GoogleMapsEvent,
   BaseArrayClass,
-  GoogleMapsAnimation
+  GoogleMapsAnimation,
+  Polyline,
+  HtmlInfoWindow
   } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
+import { PaginaBanheiroPage } from '../pagina-banheiro/pagina-banheiro';
 
 
 declare var google;
@@ -79,19 +82,40 @@ export class MapsPage {
 
       const baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
 
+      
+
       baseArray.forEach((position: any, idx: number) => {
+        const htmlInfoWindow = new HtmlInfoWindow();
+
+        const frame: HTMLElement = document.createElement('div');
+        frame.innerHTML = [
+          '<h3>' + position.title + '</h3>',
+          '<p>' + position.snippet + '</p>',
+          '<button>Teste</button>'
+        ].join("");
+        frame.getElementsByTagName("button")[0].addEventListener("click", () => {
+          this.navController.push(PaginaBanheiroPage);
+        });
+        htmlInfoWindow.setContent(frame, {
+          width: "auto",
+          height: "auto"
+        });
+
+
         const marker: Marker = this.map.addMarkerSync({
           position: position,
           icon: 'red',
-          title: position.title,
-          snippet: position.snippet,
           animation: GoogleMapsAnimation.BOUNCE,
+
         });
+        
+        
 
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+          htmlInfoWindow.open(marker);
           this.origin = location.latLng;
           this.dest = marker.getPosition();
-
+          
           const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
             origin: this.origin, // origem
             destination: this.dest, // destino
