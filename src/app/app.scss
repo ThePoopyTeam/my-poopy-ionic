@@ -1,16 +1,37 @@
-// http://ionicframework.com/docs/theming/
+$fa-font-path: "../assets/fonts" !default;
+@import "font-awesome"; 
+i[class^="fa-"], ion-icon[class^="fa-"] {    
+   font-family: "FontAwesome" !important;
+}
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+page-app {
+
+  #menu-perfil{
+    padding-botton: 100%;
+  }
+
+}
+
+
+// @import "./assets/scss/fontawesome.scss";
+// @import "./assets/scss/solid.scss";
+// @import "./assets/scss/brands.scss";
+
+// .user {
+//   @extend %fa-icon;
+//   @extend .fas;
+
+//   &:before {
+//     content: fa-content($fa-var-user);
+//   }
+// }
+
+// .twitter {
+//   @extend %fa-icon;
+//   @extend .fab;
+
+//   &:before {
+//     content: fa-content($fa-var-twitter);
+//   }
+// }

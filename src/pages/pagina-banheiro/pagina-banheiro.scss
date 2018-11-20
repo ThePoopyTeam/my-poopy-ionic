@@ -1,0 +1,57 @@
+page-pagina-banheiro {
+
+    #botaomenu{
+        top: 15px;
+        padding-left: 10px;
+        position: absolute;
+        z-index: 2;
+        font-size: 20px;
+    }
+
+    .icon{
+        font-size: 25px;
+        margin-right: 10px;
+        margin-left: 10px;
+        color: #2A2B2B;
+    }
+
+    ion-item {
+        .icon {
+            color: #12CF9B
+        }
+    }
+
+    img.avatar {
+        padding-top: 10%;
+        margin-left: 30%;
+        margin-right: 20%;
+        max-width: 40%;
+        max-height: 30%;
+    }
+
+    .tabbar {
+        padding-top: 2;
+        left:0;
+        bottom:0;
+        position: absolute;
+        z-index:10;
+        display: flex;
+        width: 100%;
+        opacity: 100;
+    }
+
+    h2 {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    p{
+        margin-left: 20px;
+        font-size: 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .ion-item {
+        top: 30%;
+        bottom: 50px;
+    }
+
+}

@@ -1,5 +1,52 @@
 page-maps {
     #map {
         height: 100%;
+        z-index: 1;
     }
+    
+    #botaomenu{
+        top: 15px;
+        padding-left: 10px;
+        position: absolute;
+        z-index: 2;
+        font-size: 20px;
+    }
+
+    #quicklymenu {
+        position: absolute;
+        z-index: 4;
+    }
+
+    .icon {
+        font-size: 18px;
+        color:#2A2B2B;
+    }
+
+    .fab {
+        contain: initial;
+        color: #FAFEFF;
+        // box-shadow: 1px 1px 1px 1px #12CF9B;
+        
+      }
+  
+      ion-fab {
+          ion-fab-list button[ion-fab] {
+              overflow: visible;
+  
+              div.label {
+                position: absolute;
+                right: 48px;
+                background: #2A2B2B;
+                height: 24px;
+                line-height: 16px;
+                padding-left: 8px;
+                padding-right: 8px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border-radius: 3px;
+                color: #FAFEFF;
+                // box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+              }
+          }
+      }
 }
