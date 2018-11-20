@@ -1,13 +1,18 @@
 <ion-menu [content]="conteudo" side="left" id="menu">
     <ion-header id="menu-perfil">
-        <ion-toolbar>
+        <ion-toolbar padding>
             <ion-avatar item-start class="avatar">
                 <img src="{{imagem}}">
             </ion-avatar>
-            <ion-title style="float: left; margin-top: 10px;">{{nome}}</ion-title>
-            <button ion-button clear style="float:right"> 
-                <ion-icon name="exit"></ion-icon>
+            <button ion-button clear  (click)="openPage(paginaUsuarioPage)" menuClose>
+                <ion-title style=" text-transform: none !important;">{{nome}}</ion-title>
             </button>
+            <p style="left: 30px; margin: 0 !important; text-transform: none !important; display: block; position: relative;">XP: 0</p>
+            <!--
+            <button ion-button clear style="float:right"> 
+                <ion-icon name="exit" style="" (click)="logoff()" menuClose></ion-icon>
+            </button>
+            -->
         </ion-toolbar>
         
     </ion-header>
