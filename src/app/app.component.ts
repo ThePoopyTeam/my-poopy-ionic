@@ -67,25 +67,25 @@ export class MyApp {
       ); 
       
       
-      // this.storage.get('intro-done').then(done => {
-      //   if (!done) {
+      this.storage.get('intro-done').then(done => {
+        if (!done) {
 
-      //     this.rootPage = IntroPage
-      //   } else {
-      //     this.rootPage = LoginPage
+          this.rootPage = IntroPage
+        } else {
+          this.rootPage = LoginPage
 
-      //     this.storage.get('uid').then(done => {
-      //       if (!done) {
-      //         this.rootPage = LoginPage
-      //       } else {
-      //         this.rootPage = MapsPage
-      //       }
-      //     });
-      //   }
-      // });
+          this.storage.get('uid').then(done => {
+            if (!done) {
+              this.rootPage = LoginPage
+            } else {
+              this.rootPage = MapsPage
+            }
+          });
+        }
+      });
 
-      this.homePage = PaginaBanheiroPage;
-      this.rootPage = this.homePage;
+      // this.homePage = PaginaBanheiroPage;
+      // this.rootPage = this.homePage;
 
     });
     
