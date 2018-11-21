@@ -14,8 +14,8 @@ export class PaginaBanheiroPage {
 
   //compartilhar 
   messager:string = "Ficou apertado na rua? Sabia que pode ter uma banheiro perto de você!";
-  image:string = "/assets/imgs/icone-perfil-banheiro.png";
-  url:string = "google.com.br";
+  image: string = "https://lh5.googleusercontent.com/VHab3mjMKymyOOSCZLizTxdP2tNSkg5RhAbXBdwz-pGgoMI0fZ7kZvMT12wG9GF2MkdCMh021Kz4_80m9G9G=w1920-h969";
+  url:string = "http://www.mypoopy.com";
   number:string = null;
 
   //tabs
@@ -25,8 +25,6 @@ export class PaginaBanheiroPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private socialSharing: SocialSharing) {
-
-      this.shareViaWhatsApp()
 
   }
 
@@ -38,9 +36,9 @@ export class PaginaBanheiroPage {
 
     this.socialSharing.shareViaWhatsApp(this.messager, 
       this.image, this.url).then(()=> {
-      console.log('Message sent!')
-    }).catch(()=> {
-      console.log('error')
+      console.log('Mensagem enviada!')
+      }).catch((error)=> {
+      console.log('erro: ' + error)
     });
 
   }
