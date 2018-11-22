@@ -71,21 +71,24 @@ export class MyApp {
         }
       ); 
       
-       this.storage.get('intro-done').then(done => {
-         if (!done) {
-           this.rootPage = IntroPage
-         } else {
-           console.log('Login')
-           this.rootPage = LoginPage
-           this.storage.get('uid').then(done => {
-             if (!done) {
-               this.rootPage = LoginPage
-             } else {
-               this.rootPage = MapsPage
-             }
-           });
-         }
-      });
+      //  this.storage.get('intro-done').then(done => {
+      //    if (!done) {
+      //      this.rootPage = IntroPage
+      //    } else {
+      //      console.log('Login')
+      //      this.rootPage = LoginPage
+      //      this.storage.get('uid').then(done => {
+      //        if (!done) {
+      //          this.rootPage = LoginPage
+      //        } else {
+      //          this.rootPage = MapsPage
+      //        }
+      //      });
+      //    }
+      // });
+
+      this.homePage = MapsPage;
+      this.rootPage = this.homePage;
     });
     
     // Ações No Menu - side bar
