@@ -89,16 +89,18 @@ export class MapsPage {
 
         const frame: HTMLElement = document.createElement('div');
         frame.innerHTML = [
+          '<div class="info-view">',
           '<h3>' + position.title + '</h3>',
           '<p>' + position.snippet + '</p>',
-          '<button>Teste</button>'
+          '</div>'
         ].join("");
-        frame.getElementsByTagName("button")[0].addEventListener("click", () => {
+        frame.getElementsByTagName("h3")[0].addEventListener("click", () => {
           this.navController.push(PaginaBanheiroPage);
         });
         htmlInfoWindow.setContent(frame, {
-          width: "auto",
-          height: "auto"
+          width: "250px",
+          height: "100px",
+          
         });
 
 
@@ -119,7 +121,7 @@ export class MapsPage {
           const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
             origin: this.origin, // origem
             destination: this.dest, // destino
-            travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, apé
+            travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, a pé
           };
 
           this.directionsService.route(request, (result, status) => {
