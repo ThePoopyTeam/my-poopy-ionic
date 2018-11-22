@@ -1,4 +1,5 @@
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms';
+import { Storage } from '@ionic/storage';
 import {Component} from '@angular/core'
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {
@@ -152,7 +153,7 @@ export class MapsPage {
 
   private getBathroom() {
     this.bathroomProvider.findAll().subscribe((bathroom: any[]) => {
-      this.storage.setItem('banheiros', JSON.stringify(bathroom));
+      this.storage.set('banheiros', JSON.stringify(bathroom));
       const markers = bathroom.map(bath => {
         return {
           lat: bath.lat,
