@@ -1,3 +1,4 @@
+import { BathroomsProvider } from './../../providers/bathrooms/bathrooms';
 import {Component} from '@angular/core'
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {
@@ -35,14 +36,22 @@ export class MapsPage {
   dest: ILatLng;
   
 
-  constructor(public googlemaps: GoogleMaps, platform: Platform, public navController: NavController) {
-    platform.ready().then(() => {
-      this.loadMap()
+  constructor(
+      private platform: Platform,
+      private navController: NavController,
+      private bathroomProvider: BathroomsProvider,
+      private storage: Storage) {
+    this.platform.ready().then(() => {
+      this.getBathroom();
     });
   }
 
-  loadMap() {
+  adicionaBanheiro() {
+    this.navController.setRoot(CadastroBanheiroPage);
+  };
 
+
+  private loadMap(markers) {
     // This code is necessary for browser
     Environment.setEnv({
       'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ',
@@ -70,16 +79,6 @@ export class MapsPage {
      
      
       this.map = GoogleMaps.create('map_canvas', options);
-
-      ///fim load map
-      
-      let markers: any[] = [
-        { lat: -30.140937, lng: -51.129785, title: "Banheiro Bloco 5 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141128, lng: -51.129964, title: "Banheiro Bloco 4 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141312, lng: -51.130147, title: "Banheiro Bloco 3 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141440, lng: -51.130330, title: "Banheiro corredor - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.131731, lng: -51.235523, title: "Ipanema Sports", snippet: "Av. Cel. Marcos, 2353 - Ipanema" }
-      ];
 
       const baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
 
@@ -151,9 +150,20 @@ export class MapsPage {
     })
   }
 
+  private getBathroom() {
+    this.bathroomProvider.findAll().subscribe((bathroom: any[]) => {
+      this.storage.setItem('banheiros', JSON.stringify(bathroom));
+      const markers = bathroom.map(bath => {
+        return {
+          lat: bath.lat,
+          lng: bath.lon,
+          title: bath.nome,
+          snippet: bath.endereco
+        }
+      });
 
-  adicionaBanheiro() {
-    this.navController.setRoot(CadastroBanheiroPage);
-  };
+      this.loadMap(markers);
+    });
+  }
 }
 

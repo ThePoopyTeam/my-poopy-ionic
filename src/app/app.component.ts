@@ -12,6 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
 import { PaginaUsuarioPage } from '../pages/pagina-usuario/pagina-usuario';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html',
@@ -26,16 +27,18 @@ export class MyApp {
   cadastroPage:any;
   paginaBanheiroPage:any;
   paginaUsuarioPage:any;
+  loginPage:any;
   nome:any;
   imagem: any;
+  
   constructor(
     public platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
-    public storage: Storage
-    ) {
+    private storage: Storage,
+    private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       this.storage.set('intro-done', false)
       this.storage.set('uid', false)
@@ -68,27 +71,21 @@ export class MyApp {
         }
       ); 
       
-      
-      // this.storage.get('intro-done').then(done => {
-      //   if (!done) {
-
-      //     this.rootPage = IntroPage
-      //   } else {
-      //     this.rootPage = LoginPage
-
-      //     this.storage.get('uid').then(done => {
-      //       if (!done) {
-      //         this.rootPage = LoginPage
-      //       } else {
-      //         this.rootPage = MapsPage
-      //       }
-      //     });
-      //   }
-      // });
-
-      this.homePage = MapsPage;
-      this.rootPage = this.homePage;
-
+       this.storage.get('intro-done').then(done => {
+         if (!done) {
+           this.rootPage = IntroPage
+         } else {
+           console.log('Login')
+           this.rootPage = LoginPage
+           this.storage.get('uid').then(done => {
+             if (!done) {
+               this.rootPage = LoginPage
+             } else {
+               this.rootPage = MapsPage
+             }
+           });
+         }
+      });
     });
     
     // Ações No Menu - side bar
@@ -125,12 +122,11 @@ export class MyApp {
   openPage(opcao) {
     this.rootPage = opcao;
   }
-
+  
   logoff(){
     
     this.rootPage = LoginPage;
   }  
  
-
 }
 
