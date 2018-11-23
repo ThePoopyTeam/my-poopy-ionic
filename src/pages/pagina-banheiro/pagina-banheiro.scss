@@ -15,6 +15,10 @@ page-pagina-banheiro {
         color: #2A2B2B;
     }
 
+    .main-content {
+        padding-top: 15px;
+    }
+
     ion-item {
         .icon {
             color: #12CF9B
@@ -22,11 +26,10 @@ page-pagina-banheiro {
     }
 
     img.avatar {
-        padding-top: 10%;
-        margin-left: 30%;
-        margin-right: 20%;
-        max-width: 40%;
-        max-height: 30%;
+        width: 25%;
+        max-width: 25%;
+        height: auto;
+        margin-left: 35%;
     }
 
     .tabbar {
@@ -52,6 +55,11 @@ page-pagina-banheiro {
     .ion-item {
         top: 30%;
         bottom: 50px;
+    }
+
+
+    .time-style {
+        color: rgb(255, 102, 0);
     }
 
 }

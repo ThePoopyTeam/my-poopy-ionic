@@ -88,7 +88,6 @@ export class MapsPage {
       
 
       baseArray.forEach((position: any, idx: number) => {
-        console.log('Position => ', position);
         const htmlInfoWindow = new HtmlInfoWindow();
 
         const frame: HTMLElement = document.createElement('div');
@@ -96,15 +95,12 @@ export class MapsPage {
           `<div class="info-view">
             <h3 id="title">${position.title}</h3>
             <p>${position.snippet}</p>
-            
-            <button id="btn-rota"
-              style="padding: 5px; border-radius: 5px; 
-                background-color: rgb(0, 153, 255)">Navegar</button>
+            <button id="btn-rota" class="btn-style">Navegar</button>
           </div>`
         ].join("");
 
         frame.querySelector('#title').addEventListener('click', () => {
-          this.navController.push(PaginaBanheiroPage);
+          this.navController.push(PaginaBanheiroPage, { banheiro: position });
         });
 
         frame.querySelector('#btn-rota').addEventListener('click', () => { 
@@ -113,7 +109,7 @@ export class MapsPage {
 
         htmlInfoWindow.setContent(frame, {
           width: "250px",
-          height: "200px",
+          height: "auto",
           
         });
 
