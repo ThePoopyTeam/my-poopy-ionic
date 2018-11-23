@@ -15,7 +15,7 @@ export class PaginaBanheiroPage {
 
   //compartilhar 
   messager:string = "Ficou apertado na rua? Sabia que pode ter uma banheiro perto de você!";
-  image: string = "https://lh5.googleusercontent.com/VHab3mjMKymyOOSCZLizTxdP2tNSkg5RhAbXBdwz-pGgoMI0fZ7kZvMT12wG9GF2MkdCMh021Kz4_80m9G9G=w1920-h969";
+  image: string = "http://i.imgur.com/wGHstRB.jpg";
   url:string = "http://www.mypoopy.com";
   number:string = null;
 

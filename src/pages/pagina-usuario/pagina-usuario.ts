@@ -17,7 +17,7 @@ import { MapsPage } from '../maps/maps';
 export class PaginaUsuarioPage {
   nome: any;
   imagem: any;
-
+  email:any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
   }
@@ -32,6 +32,11 @@ export class PaginaUsuarioPage {
     this.storage.get('photo').then((done) => {
       this.imagem = done
       console.log("imagem: " + this.imagem);
+    })
+
+    this.storage.get('email').then((done) => {
+      this.email = done
+      console.log("email: " + this.email);
     })
 
   }

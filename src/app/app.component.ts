@@ -38,10 +38,11 @@ export class MyApp {
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
     private storage: Storage,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth
+    ) {
     platform.ready().then(() => {
-      this.storage.set('intro-done', false)
-      this.storage.set('uid', false)
+       //this.storage.set('intro-done', false)
+       //this.storage.set('uid', false)
 
 
       // Okay, so the platform is ready and our plugins are available.
@@ -58,31 +59,34 @@ export class MyApp {
       ]).then(
         success => {
           if (success.hasPermission == false) {
-            this.storage.set('intro-done', false)
-            this.storage.set('uid', false)
+             this.storage.set('intro-done', false)
+             this.storage.set('uid', false)
             this.alertaNotificacao();
           } else {
           }
         }
       ); 
       
-      //  this.storage.get('intro-done').then(done => {
-      //    if (!done) {
-      //      this.rootPage = IntroPage
-      //    } else {
-      //      this.rootPage = LoginPage
-      //      this.storage.get('uid').then(done => {
-      //        if (!done) {
-      //          this.rootPage = LoginPage
-      //        } else {
-      //          this.rootPage = MapsPage
-      //        }
-      //      });
-      //    }
-      // });
+        this.storage.get('intro-done').then(done => {
+          if (!done) {
+            console.log('intro-done - Entrou Done intro')
+            this.rootPage = IntroPage
+          } else {
+            console.log('intro-done - Entrou Done Login')
+            this.rootPage = LoginPage
+            this.storage.get('uid').then(done => {
+              if (!done) {
+                this.rootPage = LoginPage
+                console.log('uid - Entrou Done Login')
+              } else {
+                this.rootPage = MapsPage
+                console.log('uid - Entrou Done Maps')
+              }
+            });
+          }
+       });
 
-      this.homePage = MapsPage;
-      this.rootPage = this.homePage;
+      
     });
     
     // Ações No Menu - side bar

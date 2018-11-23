@@ -31,6 +31,7 @@ export class LoginPage {
   uid: Boolean;
   nome;
   imagem;
+  email;
 
   user: Observable<firebase.User>;
 
@@ -84,10 +85,12 @@ export class LoginPage {
       const fc = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
       firebase.auth().signInWithCredential(fc).then(fs => {
         this.toast.create({ message: 'Usuário logado com sucesso. ', position: 'botton', duration: 3000 }).present();
+        console.log(JSON.stringify(fs.providerData[0].email))
         this.storage.set('uid', true);
         this.storage.set('uidNumber', fs.uid.toString());
         this.nome = this.storage.set('name', fs.displayName.toString());
         this.imagem = this.storage.set('photo', fs.photoURL.toString());
+        this.imagem = this.storage.set('email', fs.providerData[0].email.toString());
         this.navCtrl.push(MapsPage);
 
         /*
