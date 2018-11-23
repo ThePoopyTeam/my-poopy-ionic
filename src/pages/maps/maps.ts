@@ -1,7 +1,6 @@
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms';
 import { Storage } from '@ionic/storage';
 import {Component} from '@angular/core'
-import { Storage } from '@ionic/storage';
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {
   GoogleMaps,
