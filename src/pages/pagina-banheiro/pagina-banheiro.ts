@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing'
 
@@ -23,13 +24,25 @@ export class PaginaBanheiroPage {
   reportarTab: any;
   avaliarTab: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  banheiro: BanheiroView = {
+    name: '',
+    end: '',
+    hAberto: '',
+    hFechado: '',
+    caracteristicas: []
+  }
+  hasData = false;
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private storage: Storage,
     private socialSharing: SocialSharing) {
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PaginaBanheiroPage');
+    this.getBanheiros();
   }
 
   shareViaWhatsApp() {
@@ -55,31 +68,30 @@ export class PaginaBanheiroPage {
   }
 
 
+  private getBanheiros() {
+    this.storage.get('banheiros').then(response => {
+      const requestBath = this.navParams.get('banheiro');
+      const banheiros: any[] = JSON.parse(response);
+      const finding = banheiros.find(banheiro => 
+                          (banheiro.lat === requestBath.lat) && (banheiro.lon === requestBath.lng));
 
+      if (finding) {
+        this.banheiro.name = finding.nome;
+        this.banheiro.end = finding.endereco;
+        this.banheiro.hAberto = finding.hAb;
+        this.banheiro.hFechado = finding.hFe;
+        this.banheiro.caracteristicas = finding.caracte;
+        this.hasData = true;
+      }
+    });
+  }
 
-  // lista de caracteristicas do banheiro 
+}
 
-  caracteristicas = [
-    {
-      nome: "Feminino",
-      icone: "assets/caracteristicas/mulher.png"
-    },
-    {
-      nome: "Masculino",
-      icone: "assets/caracteristicas/masculino.png"
-    },
-    {
-      nome: "Familia",
-      icone: "assets/caracteristicas/familia.png"
-    },
-    {
-      nome: "Unissex",
-      icone: "assets/caracteristicas/iconeunissex.png"
-    },
-    {
-      nome: "PCD",
-      icone: "assets/caracteristicas/deficiente.png"
-    },
-  ];
-
+export interface BanheiroView {
+  name: String;
+  end: String;
+  hAberto: String;
+  hFechado: String;
+  caracteristicas: any[];
 }

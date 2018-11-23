@@ -57,35 +57,32 @@ export class MyApp {
         androidPermissions.PERMISSION.READ_CONTACTS
       ]).then(
         success => {
-          console.log("tem permissão?  " + JSON.stringify(success));
-
           if (success.hasPermission == false) {
-            console.log("Ainda não tem todas as permissões");
             this.storage.set('intro-done', false)
             this.storage.set('uid', false)
             this.alertaNotificacao();
           } else {
-            console.log("Tem todas as permissões!");
-            
           }
         }
       ); 
       
-       this.storage.get('intro-done').then(done => {
-         if (!done) {
-           this.rootPage = IntroPage
-         } else {
-           console.log('Login')
-           this.rootPage = LoginPage
-           this.storage.get('uid').then(done => {
-             if (!done) {
-               this.rootPage = LoginPage
-             } else {
-               this.rootPage = MapsPage
-             }
-           });
-         }
-      });
+      //  this.storage.get('intro-done').then(done => {
+      //    if (!done) {
+      //      this.rootPage = IntroPage
+      //    } else {
+      //      this.rootPage = LoginPage
+      //      this.storage.get('uid').then(done => {
+      //        if (!done) {
+      //          this.rootPage = LoginPage
+      //        } else {
+      //          this.rootPage = MapsPage
+      //        }
+      //      });
+      //    }
+      // });
+
+      this.homePage = MapsPage;
+      this.rootPage = this.homePage;
     });
     
     // Ações No Menu - side bar
@@ -96,12 +93,10 @@ export class MyApp {
     
     this.storage.get('name').then((done) => {
       this.nome = done
-      console.log("nome: " + this.nome);
     })
     this.storage.get('photo').then((done) => {
       this.imagem = done
-      console.log("imagem: " + this.imagem);
-    })
+    });
    
   }
 

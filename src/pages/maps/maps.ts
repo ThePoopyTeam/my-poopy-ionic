@@ -1,6 +1,7 @@
 import { BathroomsProvider } from './../../providers/bathrooms/bathrooms';
 import { Storage } from '@ionic/storage';
 import {Component} from '@angular/core'
+import { Storage } from '@ionic/storage';
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {
   GoogleMaps,
@@ -35,6 +36,8 @@ export class MapsPage {
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
   dest: ILatLng;
+  allPolylines: any[] = [];
+  private requestRoute;
   
 
   constructor(
@@ -90,20 +93,26 @@ export class MapsPage {
 
         const frame: HTMLElement = document.createElement('div');
         frame.innerHTML = [
-          '<div class="info-view">',
-          '<h3>' + position.title + '</h3>',
-          '<p>' + position.snippet + '</p>',
-          '</div>'
+          `<div class="info-view">
+            <h3 id="title">${position.title}</h3>
+            <p>${position.snippet}</p>
+            <button id="btn-rota" class="btn-style">Navegar</button>
+          </div>`
         ].join("");
-        frame.getElementsByTagName("h3")[0].addEventListener("click", () => {
-          this.navController.push(PaginaBanheiroPage);
-        });
-        htmlInfoWindow.setContent(frame, {
-          width: "250px",
-          height: "100px",
-          
+
+        frame.querySelector('#title').addEventListener('click', () => {
+          this.navController.push(PaginaBanheiroPage, { banheiro: position });
         });
 
+        frame.querySelector('#btn-rota').addEventListener('click', () => { 
+          this.direction(this.requestRoute);
+        });
+
+        htmlInfoWindow.setContent(frame, {
+          width: "250px",
+          height: "auto",
+          
+        });
 
         const marker: Marker = this.map.addMarkerSync({
           position: position,
@@ -115,40 +124,51 @@ export class MapsPage {
         
 
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+
           htmlInfoWindow.open(marker);
           this.origin = location.latLng;
           this.dest = marker.getPosition();
           
-          const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
+          this.requestRoute = { // Novo objeto google.maps.DirectionsRequest, contendo:
             origin: this.origin, // origem
             destination: this.dest, // destino
             travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, a pé
           };
+        });
 
-          this.directionsService.route(request, (result, status) => {
-            if (status == google.maps.DirectionsStatus.OK) {
-              const plyPath = [];
-              const legs: any[] = result.routes[0].legs;
-              legs.forEach(leg => {
-                leg.steps.forEach(step => {
-                  const nextSegment = step.path;
-                    for (let k = 0; k < nextSegment.length; k++) {
-                      plyPath.push(nextSegment[k].toJSON())
-                    }
-                });
-              });
-              this.map.addPolyline({
-                points: plyPath,
-                'color': 'blue',
-                'width': 5,
-                'geodesic': true
-              });
-            }
 
+
+      });
+    })
+  }
+
+  private direction(request) {
+    this.directionsService.route(request, (result, status) => {
+      if (this.allPolylines.length > 0) {
+        const poly: Polyline = this.allPolylines.pop();
+        poly.remove();
+      }
+
+      if (status == google.maps.DirectionsStatus.OK) {
+        const plyPath = [];
+        const legs: any[] = result.routes[0].legs;
+        legs.forEach(leg => {
+          leg.steps.forEach(step => {
+            const nextSegment = step.path;
+              for (let k = 0; k < nextSegment.length; k++) {
+                plyPath.push(nextSegment[k].toJSON())
+              }
           });
         });
-      }) 
-    })
+
+        this.map.addPolyline({
+          points: plyPath,
+          'color': 'rgb(0, 153, 255)',
+          'width': 5,
+          'geodesic': true
+        }).then((res: Polyline) => this.allPolylines.push(res));
+      }
+    });
   }
 
   private getBathroom() {
