@@ -27,9 +27,7 @@ export class MyApp {
   cadastroPage:any;
   paginaBanheiroPage:any;
   paginaUsuarioPage:any;
-  loginPage:any;
-  nome:any;
-  imagem: any;
+
   
   constructor(
     public platform: Platform, 
@@ -94,14 +92,7 @@ export class MyApp {
     this.cadastroPage = CadastroBanheiroPage;
     this.paginaBanheiroPage = PaginaBanheiroPage;
     this.paginaUsuarioPage = PaginaUsuarioPage;
-    
-    this.storage.get('name').then((done) => {
-      this.nome = done
-    })
-    this.storage.get('photo').then((done) => {
-      this.imagem = done
-    });
-   
+  
   }
 
   alertaNotificacao() {
