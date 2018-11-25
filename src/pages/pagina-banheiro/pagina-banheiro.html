@@ -1,8 +1,13 @@
-<button id="botaomenu" color="dark" clear ion-button menuToggle>
-  <ion-icon name="menu"></ion-icon>
-</button>
-
 <ion-content scroll *ngIf="hasData">
+
+  <ion-row>
+    <ion-col col-12>
+      <button icon-only ion-button clear (click)="voltar()">
+        <ion-icon name="arrow-back" style="color: #000000"></ion-icon>
+      </button>
+    </ion-col>
+  </ion-row>
+
   <div class="main-content">
     <ion-fab top right>
       <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>

@@ -20,6 +20,7 @@ import {
   } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
 import { PaginaBanheiroPage } from '../pagina-banheiro/pagina-banheiro';
+import { PaginaUsuarioPage } from '../pagina-usuario/pagina-usuario';
 
 
 declare var google;
@@ -31,6 +32,12 @@ declare var google;
   
 })
 export class MapsPage {
+
+  //perfil do usuário
+  nome: any;
+  imagem:any;
+
+  //mapa
   map: GoogleMap;
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
@@ -43,15 +50,29 @@ export class MapsPage {
       private platform: Platform,
       private navController: NavController,
       private bathroomProvider: BathroomsProvider,
-      private storage: Storage) {
+      private storage: Storage
+    ) {
+
     this.platform.ready().then(() => {
       this.getBathroom();
     });
+
+    this.storage.get('name').then((done) => {
+      this.nome = done
+    })
+    this.storage.get('photo').then((done) => {
+      this.imagem = done
+    });
+
   }
 
   adicionaBanheiro() {
     this.navController.setRoot(CadastroBanheiroPage);
   };
+
+  perfilUsuario() {
+    this.navController.setRoot(PaginaUsuarioPage);
+  } 
 
 
   private loadMap(markers) {
