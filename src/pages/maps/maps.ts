@@ -52,6 +52,7 @@ export class MapsPage {
       private bathroomProvider: BathroomsProvider,
       private storage: Storage
     ) {
+      
 
     this.platform.ready().then(() => {
       this.getBathroom();
