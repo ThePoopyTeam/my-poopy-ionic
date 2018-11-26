@@ -65,26 +65,26 @@ export class MyApp {
         }
       ); 
       
-      //   this.storage.get('intro-done').then(done => {
-      //     if (!done) {
-      //       console.log('intro-done - Entrou Done intro')
-      //       this.rootPage = IntroPage
-      //     } else {
-      //       console.log('intro-done - Entrou Done Login')
-      //       this.rootPage = LoginPage
-      //       this.storage.get('uid').then(done => {
-      //         if (!done) {
-      //           this.rootPage = LoginPage
-      //           console.log('uid - Entrou Done Login')
-      //         } else {
-      //           this.rootPage = MapsPage
-      //           console.log('uid - Entrou Done Maps')
-      //         }
-      //       });
-      //     }
-      //  });
+        this.storage.get('intro-done').then(done => {
+          if (!done) {
+            console.log('intro-done - Entrou Done intro')
+            this.rootPage = IntroPage
+          } else {
+            console.log('intro-done - Entrou Done Login')
+            this.rootPage = LoginPage
+            this.storage.get('uid').then(done => {
+              if (!done) {
+                this.rootPage = LoginPage
+                console.log('uid - Entrou Done Login')
+              } else {
+                this.rootPage = MapsPage
+                console.log('uid - Entrou Done Maps')
+              }
+            });
+          }
+       });
 
-      this.rootPage = MapsPage
+      // this.rootPage = MapsPage
     });
     
     // Ações No Menu - side bar
