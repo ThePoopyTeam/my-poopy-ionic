@@ -9,8 +9,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     MapsPage
   ],
   imports: [
-    IonicPageModule.forChild(MapsPage),
-    
+    IonicPageModule.forChild(MapsPage),    
   ],
   providers: [
     Geolocation,

@@ -46,44 +46,43 @@ export class IntroPage {
   
   constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage) {
     
-    this.storage.get('intro-done').then(done => {
-      if (!done) {
-        
-        this.firstaccess = true
-      } else {
-        this.navCtrl.setRoot(LoginPage);
-        this.firstaccess = false
-      }
-    });
+  //   this.storage.get('intro-done').then(done => {
+  //     if (!done) {
+  //       this.navCtrl.setRoot(LoginPage);
+  //       this.firstaccess = true
+  //     } else {
+  //       this.navCtrl.setRoot(LoginPage);
+  //       this.firstaccess = false
+  //     }
+  //   });
 
-    this.storage.get('uid').then(done => {
-      if (!done) {
-
-        
-      } else {
-        this.navCtrl.setRoot(MapsPage);
+  //   this.storage.get('uid').then(done => {
+  //     if (!done) {
+  //       this.navCtrl.setRoot(LoginPage);
+  //     } else {
+  //       this.navCtrl.setRoot(MapsPage);
          
-      }
-    });
+  //     }
+  //   });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');    
   }
 
-  ionViewCanEnter(): boolean {
+  // ionViewCanEnter(): boolean {
     
-    if(this.firstaccess) {
-      return false
-    }
-    return true
+  //   if(this.firstaccess) {
+  //     return false
+  //   }
+  //   return true
     
-  }
+  // }
 
   goToTabsPage() {
     //push another page onto the history stack
     //causing the nav controller to animate the new page in
-    this.navCtrl.push(MapsPage);
+    this.navCtrl.push(LoginPage);
     this.storage.set('intro-done', true);
   }
 

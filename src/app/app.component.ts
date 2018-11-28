@@ -11,6 +11,8 @@ import { IntroPage } from '../pages/intro/intro';
 import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
+import { PaginaUsuarioPage } from '../pages/pagina-usuario/pagina-usuario';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   templateUrl: 'app.html',
@@ -24,19 +26,23 @@ export class MyApp {
   homePage:any;
   cadastroPage:any;
   paginaBanheiroPage:any;
+  paginaUsuarioPage:any;
+  loginPage:any;
   nome:any;
   imagem: any;
+  
   constructor(
     public platform: Platform, 
     statusBar: StatusBar, 
     splashScreen: SplashScreen,
     androidPermissions: AndroidPermissions, 
     private alertCtrl: AlertController,
-    public storage: Storage
+    private storage: Storage,
+    private afAuth: AngularFireAuth
     ) {
     platform.ready().then(() => {
-      this.storage.set('intro-done', false)
-      this.storage.set('uid', false)
+       //this.storage.set('intro-done', false)
+       //this.storage.set('uid', false)
 
 
       // Okay, so the platform is ready and our plugins are available.
@@ -52,56 +58,49 @@ export class MyApp {
         androidPermissions.PERMISSION.READ_CONTACTS
       ]).then(
         success => {
-          console.log("tem permissão?  " + JSON.stringify(success));
-
           if (success.hasPermission == false) {
-            console.log("Ainda não tem todas as permissões");
-            this.storage.set('intro-done', false)
-            this.storage.set('uid', false)
+             this.storage.set('intro-done', false)
+             this.storage.set('uid', false)
             this.alertaNotificacao();
           } else {
-            console.log("Tem todas as permissões!");
-            
           }
         }
       ); 
       
+        this.storage.get('intro-done').then(done => {
+          if (!done) {
+            console.log('intro-done - Entrou Done intro')
+            this.rootPage = IntroPage
+          } else {
+            console.log('intro-done - Entrou Done Login')
+            this.rootPage = LoginPage
+            this.storage.get('uid').then(done => {
+              if (!done) {
+                this.rootPage = LoginPage
+                console.log('uid - Entrou Done Login')
+              } else {
+                this.rootPage = MapsPage
+                console.log('uid - Entrou Done Maps')
+              }
+            });
+          }
+       });
+
       
-      // this.storage.get('intro-done').then(done => {
-      //   if (!done) {
-
-      //     this.rootPage = IntroPage
-      //   } else {
-      //     this.rootPage = LoginPage
-
-      //     this.storage.get('uid').then(done => {
-      //       if (!done) {
-      //         this.rootPage = LoginPage
-      //       } else {
-      //         this.rootPage = MapsPage
-      //       }
-      //     });
-      //   }
-      // });
-
-      this.homePage = PaginaBanheiroPage;
-      this.rootPage = this.homePage;
-
     });
     
     // Ações No Menu - side bar
     this.homePage = MapsPage;
     this.cadastroPage = CadastroBanheiroPage;
     this.paginaBanheiroPage = PaginaBanheiroPage;
+    this.paginaUsuarioPage = PaginaUsuarioPage;
     
     this.storage.get('name').then((done) => {
       this.nome = done
-      console.log("nome: " + this.nome);
     })
     this.storage.get('photo').then((done) => {
       this.imagem = done
-      console.log("imagem: " + this.imagem);
-    })
+    });
    
   }
 
@@ -122,9 +121,11 @@ export class MyApp {
   openPage(opcao) {
     this.rootPage = opcao;
   }
-
   
+  logoff(){
+    
+    this.rootPage = LoginPage;
+  }  
  
-
 }
 

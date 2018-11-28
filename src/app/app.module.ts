@@ -10,6 +10,7 @@ import { Facebook } from '@ionic-native/facebook';
 import firebase from 'firebase';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { LoginPageModule } from '../pages/login/login.module';
@@ -17,6 +18,7 @@ import { MapsPageModule } from '../pages/maps/maps.module';
 import { Geolocation } from '@ionic-native/geolocation';
 import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-banheiro.module';
 import { PaginaBanheiroPageModule } from '../pages/pagina-banheiro/pagina-banheiro.module';
+import { PaginaUsuarioPageModule } from '../pages/pagina-usuario/pagina-usuario.module';
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
@@ -28,6 +30,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { BathroomsProvider } from '../providers/bathrooms/bathrooms';
 import { SocialSharing } from '@ionic-native/social-sharing';
+
 // import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export const firebaseConfig = {
@@ -53,11 +56,14 @@ firebase.initializeApp(firebaseConfig);
     MapsPageModule,
     CadastroBanheiroPageModule,
     PaginaBanheiroPageModule,
-    AngularFireModule.initializeApp(firebaseConfig),
     HttpClientModule,
     HttpModule,
+    PaginaUsuarioPageModule,
     // FontAwesomeModule,
     IonicStorageModule.forRoot(),
+    //login com o google
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

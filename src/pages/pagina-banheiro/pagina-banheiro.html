@@ -2,58 +2,65 @@
   <ion-icon name="menu"></ion-icon>
 </button>
 
-<ion-content scroll>
+<ion-content scroll *ngIf="hasData">
+  <div class="main-content">
+    <ion-fab top right>
+      <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>
+      <ion-fab-list>
+        <!-- <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button> -->
+        <button ion-fab><ion-icon name="logo-whatsapp" (click)="shareViaWhatsApp()"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
 
-  <ion-fab top right>
-    <button ion-fab mini color="azulpaleta"><ion-icon name="share"></ion-icon></button>
-    <ion-fab-list>
-      <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
-      <button ion-fab><ion-icon name="logo-whatsapp"></ion-icon></button>
-    </ion-fab-list>
-  </ion-fab>
 
-  <img class="avatar" src="/assets/imgs/icone-perfil-banheiro.png"/>
+    <img 
+        class="avatar"
+        src="/assets/imgs/icone-perfil-banheiro.png"/>
 
-  <ion-item id="banheiro" text-center> 
-    <h2>Marty McFly</h2>
-    <p>November 5, 1955</p>
-  </ion-item>
-
-  <div>
-    <ion-item>
-      <ion-icon name="happy" item-start></ion-icon>
-          Nota
-      <ion-badge item-end color=laranjapaleta>260k</ion-badge>
+    <ion-item id="banheiro" text-center>
+      <h2>{{ banheiro.name }}</h2>
+      <p>{{ banheiro.end }}</p>
+      <p>Aberto das <span class="time-style">{{ banheiro.hAberto}}h</span> as <span class="time-style">{{ banheiro.hFechado }}h</span></p>
     </ion-item>
 
-    <ion-item>
-      <ion-icon name="navigate" item-start></ion-icon>
-          Visitas
-      <ion-badge item-end color=laranjapaleta>260k</ion-badge>
-    </ion-item>
-  
-  </div>  
-   
-  <!-- Lista de Caracteristicas do banheiro -->
-  <div #cadastro id="cadastro" scrollY="true" scrollX="true" style="overflow:auto;"> 
-    <p>Caracteristicas</p>
-    <ion-list  id="lista">
-      <ion-item *ngFor='let caracteristica of caracteristicas'>
-        <ion-avatar item-start>
-          <img [src]="caracteristica.icone">
-        </ion-avatar>
-        <ion-label>{{caracteristica.nome}}</ion-label>
+    <div>
+      <ion-item>
+        <ion-icon name="happy" item-start></ion-icon>
+            Nota
+        <ion-badge item-end color=laranjapaleta>10</ion-badge>
       </ion-item>
-    </ion-list>
-  </div>
 
+      <ion-item>
+        <ion-icon name="navigate" item-start></ion-icon>
+            Visitas
+        <ion-badge item-end color=laranjapaleta>25</ion-badge>
+      </ion-item>
+    
+    </div>  
+    
+    <!-- Lista de Caracteristicas do banheiro -->
+    <div #cadastro id="cadastro" scrollY="true" scrollX="true" style="overflow:auto;"> 
+      <p>Caracteristicas</p>
+      <ion-list  id="lista">
+        <ion-item *ngFor='let caracteristica of banheiro.caracteristicas'>
+          <ion-avatar item-start>
+            <img [src]="caracteristica.icone">
+          </ion-avatar>
+          <ion-label>{{caracteristica.nome}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
 
+<<<<<<< HEAD
 <!-- <ion-tabs padding color=brancopaleta >
   <ion-tab tabIcon="water" tabTitle="Editar" [root]="tab1"></ion-tab>
   <ion-tab tabIcon="leaf" tabTitle="Reportar" [root]="tab2"></ion-tab>
   <ion-tab tabIcon="flame" tabTitle="Avaliar" [root]="tab3"></ion-tab>
 </ion-tabs> -->
+=======
+>>>>>>> c35e6fb46e592ec6997b2c0faa0b763424c413c0
 
 

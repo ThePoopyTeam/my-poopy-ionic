@@ -2,46 +2,45 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
+import { environment } from '../environments';
 
-
-/*
-  Generated class for the BathroomsProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class BathroomsProvider {
-  private API_URL = 'https://mypoopy.herokuapp.com/';
-  uid:string
+  private API_URL = `${environment.api}bathroom`;
+  private uid:string
 
-  constructor(public http: HttpClient, public storage: Storage) {
-    console.log('Hello BathroomsProvider Provider');
+  constructor(
+      private http: HttpClient,
+      private storage: Storage) { }
+
+  createBathroom(bathroom) {
+      console.log('CREATE')
+      console.log('URL ==> ', this.API_URL);
+      // this.storage.get('uidNumber').then(done => {
+      //   console.log('Done => ', done);
+      //   this.uid = done;
+      // });
+
+      const headers = { 
+        headers: { 
+          'Content-Type': 'application/json',
+          'uid': 'q0tMl6ZQwpWAkCY9qkgk4Obh6R13'
+        } 
+      };
+      console.log(JSON.stringify(bathroom));
+      return this.http.post(this.API_URL, bathroom, headers);
   }
 
-  createBathroom(nome: String, endereco: String, caracte: String, lat: Number, lon: Number, hAb:String, hFe: String) {
-    return new Promise((resolve, reject) => {
-      var data = {
-        nome: nome,
-        endereco: endereco,
-        caracte: caracte,
-        lat: lat,
-        lon: lon,
-        hAb:hAb,
-        hFe:hFe
-      };
 
-      this.storage.get('uidNumber').then(done => {
-        this.uid = done
-      });
-      
-      this.http.post(this.API_URL + 'api/bathroom/', data, { headers: { 'Content-Type': 'application/json', 'uid': this.uid } })
-        .subscribe(res => {
-          resolve(res);
-        }, (err) => {
-          reject(err);
-        });
-    });
+  findAll() {
+    const headers = { 
+      headers: { 
+        'Content-Type': 'application/json',
+        'uid': 'q0tMl6ZQwpWAkCY9qkgk4Obh6R13'
+      } 
+    };
+
+    return this.http.get(this.API_URL, headers);
   }
 
 }

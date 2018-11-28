@@ -1,3 +1,5 @@
+import { BathroomsProvider } from './../../providers/bathrooms/bathrooms';
+import { Storage } from '@ionic/storage';
 import {Component} from '@angular/core'
 import {IonicPage, Platform, NavController} from 'ionic-angular'
 import {
@@ -13,9 +15,11 @@ import {
   GoogleMapsEvent,
   BaseArrayClass,
   GoogleMapsAnimation,
-  Polyline
+  Polyline,
+  HtmlInfoWindow
   } from '@ionic-native/google-maps'
 import { CadastroBanheiroPage } from '../cadastro-banheiro/cadastro-banheiro';
+import { PaginaBanheiroPage } from '../pagina-banheiro/pagina-banheiro';
 
 
 declare var google;
@@ -31,16 +35,26 @@ export class MapsPage {
   directionsService = new google.maps.DirectionsService
   origin: ILatLng;
   dest: ILatLng;
+  allPolylines: any[] = [];
+  private requestRoute;
   
 
-  constructor(public googlemaps: GoogleMaps, platform: Platform, public navController: NavController) {
-    platform.ready().then(() => {
-      this.loadMap()
+  constructor(
+      private platform: Platform,
+      private navController: NavController,
+      private bathroomProvider: BathroomsProvider,
+      private storage: Storage) {
+    this.platform.ready().then(() => {
+      this.getBathroom();
     });
   }
 
-  loadMap() {
+  adicionaBanheiro() {
+    this.navController.setRoot(CadastroBanheiroPage);
+  };
 
+
+  private loadMap(markers) {
     // This code is necessary for browser
     Environment.setEnv({
       'API_KEY_FOR_BROWSER_RELEASE': 'AIzaSyAAA-CoZcaF2tT2DKPCTnQPepP2tgIoSSQ',
@@ -49,9 +63,7 @@ export class MapsPage {
   
 
     LocationService.getMyLocation().then((location: MyLocation) => {
-      console.log(location);
-      
-      let options: GoogleMapOptions = {
+      const options: GoogleMapOptions = {
         camera: {
           target: location.latLng,
           zoom:16
@@ -66,101 +78,112 @@ export class MapsPage {
           rotate: true,
           zoom: true
         },
-        
-      } 
+      };
      
      
       this.map = GoogleMaps.create('map_canvas', options);
 
-      ///fim load map
-      
-      let markers: any[] = [
-        { lat: -30.140937, lng: -51.129785, title: "Banheiro Bloco 5 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141128, lng: -51.129964, title: "Banheiro Bloco 4 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141312, lng: -51.130147, title: "Banheiro Bloco 3 - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.141440, lng: -51.130330, title: "Banheiro corredor - IFRS Campus Restinga", snippet: "Rua Alberto Hoffmann, 285 - Restinga" },
-        { lat: -30.131731, lng: -51.235523, title: "Ipanema Sports", snippet: "Av. Cel. Marcos, 2353 - Ipanema" }
-      ];
+      const baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
 
-      let baseArray: BaseArrayClass<any> = new BaseArrayClass(markers);
+      
 
       baseArray.forEach((position: any, idx: number) => {
-        console.log(position.title);
+        const htmlInfoWindow = new HtmlInfoWindow();
 
-        let marker: Marker = this.map.addMarkerSync({
+        const frame: HTMLElement = document.createElement('div');
+        frame.innerHTML = [
+          `<div class="info-view">
+            <h3 id="title">${position.title}</h3>
+            <p>${position.snippet}</p>
+            <button id="btn-rota" class="btn-style">Navegar</button>
+          </div>`
+        ].join("");
+
+        frame.querySelector('#title').addEventListener('click', () => {
+          this.navController.push(PaginaBanheiroPage, { banheiro: position });
+        });
+
+        frame.querySelector('#btn-rota').addEventListener('click', () => { 
+          this.direction(this.requestRoute);
+        });
+
+        htmlInfoWindow.setContent(frame, {
+          width: "250px",
+          height: "auto",
+          
+        });
+
+        const marker: Marker = this.map.addMarkerSync({
           position: position,
           icon: 'red',
-          title: position.title,
-          snippet: position.snippet,
           animation: GoogleMapsAnimation.BOUNCE,
-        })
+
+        });
+        
+        
+
         marker.on(GoogleMapsEvent.MARKER_CLICK).subscribe(() => {
+
+          htmlInfoWindow.open(marker);
+          this.origin = location.latLng;
+          this.dest = marker.getPosition();
           
-
-          this.origin = location.latLng
-
-          this.dest = marker.getPosition()
-
-          const request = { // Novo objeto google.maps.DirectionsRequest, contendo:
+          this.requestRoute = { // Novo objeto google.maps.DirectionsRequest, contendo:
             origin: this.origin, // origem
             destination: this.dest, // destino
-            travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, apé
+            travelMode: google.maps.TravelMode.WALKING // meio de transporte, nesse caso, a pé
           };
-
-          let promisePyPath = new Promise((resolve, reject) => {
-            this.directionsService.route(request, function (result, status) {
-              if (status == google.maps.DirectionsStatus.OK) {
-                const plyPath = [];
-                const legs = result.routes[0].legs;
-                for (let i = 0; i < legs.length; i++) {
-                  var steps = legs[i].steps;
-
-                  for (let j = 0; j < steps.length; j++) {
-                    var nextSegment = steps[j].path;
-
-                    for (let k = 0; k < nextSegment.length; k++) {
+        });
 
 
-                      plyPath.push(nextSegment[k].toJSON())
-                    }
-                  }
-                }
 
-
-                resolve(plyPath)
-              }
-            })
-
-
-          })
-
-          
-          Promise.all([promisePyPath]).then(response => {
-            const plyPath: any = response[0]
-              const teste = this.map.addPolyline({
-                points: plyPath,
-                'color': 'blue',
-                'width': 5,
-                'geodesic': true
-              })
-
-              console.log(teste)
-              
-          })
-
-        })
-      })   
-
-      
-      
-
-      
+      });
     })
   }
 
+  private direction(request) {
+    this.directionsService.route(request, (result, status) => {
+      if (this.allPolylines.length > 0) {
+        const poly: Polyline = this.allPolylines.pop();
+        poly.remove();
+      }
 
-  adicionaBanheiro() {
-    this.navController.setRoot(CadastroBanheiroPage);
-  };
+      if (status == google.maps.DirectionsStatus.OK) {
+        const plyPath = [];
+        const legs: any[] = result.routes[0].legs;
+        legs.forEach(leg => {
+          leg.steps.forEach(step => {
+            const nextSegment = step.path;
+              for (let k = 0; k < nextSegment.length; k++) {
+                plyPath.push(nextSegment[k].toJSON())
+              }
+          });
+        });
+
+        this.map.addPolyline({
+          points: plyPath,
+          'color': 'rgb(0, 153, 255)',
+          'width': 5,
+          'geodesic': true
+        }).then((res: Polyline) => this.allPolylines.push(res));
+      }
+    });
+  }
+
+  private getBathroom() {
+    this.bathroomProvider.findAll().subscribe((bathroom: any[]) => {
+      this.storage.set('banheiros', JSON.stringify(bathroom));
+      const markers = bathroom.map(bath => {
+        return {
+          lat: bath.lat,
+          lng: bath.lon,
+          title: bath.nome,
+          snippet: bath.endereco
+        }
+      });
+
+      this.loadMap(markers);
+    });
+  }
 }
 
