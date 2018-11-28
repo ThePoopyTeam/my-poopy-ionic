@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 import { Storage } from '@ionic/storage';
+
 // Paginas do menu
 import { CadastroBanheiroPage } from '../pages/cadastro-banheiro/cadastro-banheiro'
 import { IntroPage } from '../pages/intro/intro';
@@ -12,6 +13,8 @@ import { LoginPage } from '../pages/login/login';
 import { MapsPage } from '../pages/maps/maps';
 import { PaginaBanheiroPage } from '../pages/pagina-banheiro/pagina-banheiro';
 import { PaginaUsuarioPage } from '../pages/pagina-usuario/pagina-usuario';
+import { ReportPage } from '../pages/report/report';
+
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
@@ -27,9 +30,7 @@ export class MyApp {
   cadastroPage:any;
   paginaBanheiroPage:any;
   paginaUsuarioPage:any;
-  loginPage:any;
-  nome:any;
-  imagem: any;
+
   
   constructor(
     public platform: Platform, 
@@ -67,26 +68,26 @@ export class MyApp {
         }
       ); 
       
-        this.storage.get('intro-done').then(done => {
-          if (!done) {
-            console.log('intro-done - Entrou Done intro')
-            this.rootPage = IntroPage
-          } else {
-            console.log('intro-done - Entrou Done Login')
-            this.rootPage = LoginPage
-            this.storage.get('uid').then(done => {
-              if (!done) {
-                this.rootPage = LoginPage
-                console.log('uid - Entrou Done Login')
-              } else {
-                this.rootPage = MapsPage
-                console.log('uid - Entrou Done Maps')
-              }
-            });
-          }
-       });
+      //   this.storage.get('intro-done').then(done => {
+      //     if (!done) {
+      //       console.log('intro-done - Entrou Done intro')
+      //       this.rootPage = IntroPage
+      //     } else {
+      //       console.log('intro-done - Entrou Done Login')
+      //       this.rootPage = LoginPage
+      //       this.storage.get('uid').then(done => {
+      //         if (!done) {
+      //           this.rootPage = LoginPage
+      //           console.log('uid - Entrou Done Login')
+      //         } else {
+      //           this.rootPage = MapsPage
+      //           console.log('uid - Entrou Done Maps')
+      //         }
+      //       });
+      //     }
+      //  });
 
-      
+      this.rootPage = ReportPage
     });
     
     // Ações No Menu - side bar
@@ -94,14 +95,7 @@ export class MyApp {
     this.cadastroPage = CadastroBanheiroPage;
     this.paginaBanheiroPage = PaginaBanheiroPage;
     this.paginaUsuarioPage = PaginaUsuarioPage;
-    
-    this.storage.get('name').then((done) => {
-      this.nome = done
-    })
-    this.storage.get('photo').then((done) => {
-      this.imagem = done
-    });
-   
+  
   }
 
   alertaNotificacao() {
@@ -117,15 +111,8 @@ export class MyApp {
     });
     alert.present();
   }
-
-  openPage(opcao) {
-    this.rootPage = opcao;
-  }
   
-  logoff(){
-    
-    this.rootPage = LoginPage;
-  }  
+ 
  
 }
 

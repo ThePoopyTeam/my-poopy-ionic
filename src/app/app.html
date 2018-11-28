@@ -1,33 +1,3 @@
-<ion-menu [content]="conteudo" side="left" id="menu">
-    <ion-header id="menu-perfil">
-        <ion-toolbar padding>
-            <ion-avatar item-start class="avatar">
-                <img src="{{imagem}}">
-            </ion-avatar>
-            <button ion-button clear  (click)="openPage(paginaUsuarioPage)" menuClose>
-                <ion-title style=" text-transform: none !important;">{{nome}}</ion-title>
-            </button>
-            <p style="left: 30px; margin: 0 !important; text-transform: none !important; display: block; position: relative;">XP: 0</p>
-            <!--
-            <button ion-button clear style="float:right"> 
-                <ion-icon name="exit" style="" (click)="logoff()" menuClose></ion-icon>
-            </button>
-            -->
-        </ion-toolbar>
-        
-    </ion-header>
-
-    <ion-content id="menu-item">
-        <ion-list id="menu-item">
-            <button ion-item (click)="openPage(homePage)" menuClose> Inicio </button>
-            <button ion-item (click)="openPage(cadastroPage)" menuClose> Cadastro </button>
-            <button ion-item (click)="openPage(paginaBanheiroPage)" menuClose> Página Banheiro </button>
-            <button ion-item> Reportar </button>
-            <button ion-item> Ranking </button>
-        </ion-list>
-    </ion-content>
-</ion-menu>
-
-
 <ion-nav [root]="rootPage" #conteudo></ion-nav>
+
 

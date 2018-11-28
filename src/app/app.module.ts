@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { CadastroBanheiroPageModule } from '../pages/cadastro-banheiro/cadastro-banheiro.module';
 import { PaginaBanheiroPageModule } from '../pages/pagina-banheiro/pagina-banheiro.module';
 import { PaginaUsuarioPageModule } from '../pages/pagina-usuario/pagina-usuario.module';
+import { ReportPageModule } from '../pages/report/report.module';
 
 import { ConnectivityProvider } from '../providers/connectivity/connectivity';
 import { GoogmeMapsClusterProvider } from '../providers/googme-maps-cluster/googme-maps-cluster';
@@ -56,6 +57,7 @@ firebase.initializeApp(firebaseConfig);
     MapsPageModule,
     CadastroBanheiroPageModule,
     PaginaBanheiroPageModule,
+    ReportPageModule,
     HttpClientModule,
     HttpModule,
     PaginaUsuarioPageModule,
