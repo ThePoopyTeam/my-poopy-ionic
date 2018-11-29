@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SocialSharing } from '@ionic-native/social-sharing'
@@ -10,6 +10,13 @@ import { SocialSharing } from '@ionic-native/social-sharing'
 })
 export class PaginaBanheiroPage {
 
+  //avaliação
+  @Input() numStarts: number = 5;
+  @Input() value: number = 2.5;
+
+  stars: string[] = [];
+  rater: any;
+
   //dados das caracteristicas apenas exemplos
   public catacteristicas: any;
 
@@ -18,11 +25,6 @@ export class PaginaBanheiroPage {
   image: string = "http://i.imgur.com/wGHstRB.jpg";
   url:string = "http://www.mypoopy.com";
   number:string = null;
-
-  //tabs
-  editarTab: any;
-  reportarTab: any;
-  avaliarTab: any;
 
   banheiro: BanheiroView = {
     name: '',
@@ -84,6 +86,49 @@ export class PaginaBanheiroPage {
         this.hasData = true;
       }
     });
+  }
+
+  //AVALIAÇÃO DOS BANHEIROS
+  ngAfterViewInit(){
+    this.calcStars();
+    
+  }
+
+  calcStars(){
+
+    let tmp = this.value;
+    for(let i=0; i<this.numStarts; i++, tmp--) {
+      if(tmp>1){
+			  this.stars.push("star")
+		  }else if (tmp  >0 && tmp<1) {
+			  this.stars.push("star-half")
+		  }else {
+			  this.stars.push("star-outline")
+		  }
+    }
+
+  }
+
+  starClicked(index){
+    console.log("index: " + (index + 1));
+
+    //adicionando a nota a variavel rater.
+    if ( index + 1 == 1) {
+      this.rater = 0
+      console.log("nota: " + this.rater)
+    }else if( index + 1 == 2) {
+      this.rater = 2.5
+      console.log("nota: " + this.rater)
+    }else if ( index + 1 == 3) {
+      this.rater = 5.0
+      console.log("nota: " + this.rater)
+    }else if (index + 1 == 4) {
+      this.rater = 7.5
+      console.log("nota: " + this.rater)
+    }else if (index + 1 == 5) {
+      this.rater = 10.0
+      console.log("nota: " + this.rater)
+    }
   }
 
 }

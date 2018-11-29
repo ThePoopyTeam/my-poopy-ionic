@@ -32,15 +32,12 @@ page-pagina-banheiro {
         margin-left: 35%;
     }
 
-    .tabbar {
-        padding-top: 2;
-        left:0;
-        bottom:0;
-        position: absolute;
-        z-index:10;
-        display: flex;
-        width: 100%;
-        opacity: 100;
+    #rater {
+        align-items: center;
+    }
+
+    #stars {
+        color: #12CF9B;
     }
 
     h2 {

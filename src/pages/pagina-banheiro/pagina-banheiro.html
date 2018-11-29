@@ -29,20 +29,13 @@
       <p>Aberto das <span class="time-style">{{ banheiro.hAberto}}h</span> as <span class="time-style">{{ banheiro.hFechado }}h</span></p>
     </ion-item>
 
-    <div>
-      <ion-item>
-        <ion-icon name="happy" item-start></ion-icon>
-            Nota
-        <ion-badge item-end color=laranjapaleta>10</ion-badge>
-      </ion-item>
-
-      <ion-item>
-        <ion-icon name="navigate" item-start></ion-icon>
-            Visitas
-        <ion-badge item-end color=laranjapaleta>25</ion-badge>
-      </ion-item>
-    
-    </div>  
+    <ion-grid id="rater" class="ion-rating-container">
+      <ion-row>
+        <ion-col *ngFor="let star of stars ; let i = index" tappable (click)="starClicked(i)"> 
+          <ion-icon id="stars" [name]="star"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
     
     <!-- Lista de Caracteristicas do banheiro -->
     <div #cadastro id="cadastro" scrollY="true" scrollX="true" style="overflow:auto;"> 
@@ -59,13 +52,5 @@
   </div>
 </ion-content>
 
-<<<<<<< HEAD
-<!-- <ion-tabs padding color=brancopaleta >
-  <ion-tab tabIcon="water" tabTitle="Editar" [root]="tab1"></ion-tab>
-  <ion-tab tabIcon="leaf" tabTitle="Reportar" [root]="tab2"></ion-tab>
-  <ion-tab tabIcon="flame" tabTitle="Avaliar" [root]="tab3"></ion-tab>
-</ion-tabs> -->
-=======
->>>>>>> c35e6fb46e592ec6997b2c0faa0b763424c413c0
 
 
