@@ -90,11 +90,6 @@ export class MyApp {
       this.rootPage = ReportPage
     });
     
-    // Ações No Menu - side bar
-    this.homePage = MapsPage;
-    this.cadastroPage = CadastroBanheiroPage;
-    this.paginaBanheiroPage = PaginaBanheiroPage;
-    this.paginaUsuarioPage = PaginaUsuarioPage;
   
   }
 
